@@ -1,1 +1,1 @@
-#Cell Annotation in Spatial Transcriptomics through Learned Embedding Clustering
+# Cell Annotation in Spatial Transcriptomics through Learned Embedding Clustering
