@@ -1,0 +1,7516 @@
+{
+  "metadata": {
+    "sha256_checksum": "",
+    "ui_props": {
+      "visible": false
+    }
+  },
+  "payload": {
+    "chemistry": {
+      "decoder": "DE_24",
+      "version": "PD"
+    },
+    "customer": {
+      "email": null,
+      "name": "10x R&D"
+    },
+    "designer": {
+      "date_created": "2022-01-01T00:00:00",
+      "designed_by": {
+        "email": null,
+        "name": "10x R&D"
+      },
+      "version": "Internal"
+    },
+    "panel": {
+      "description": "PD_260_LX16_hBreast_320g_V1cherrypick gene panel",
+      "identity": {
+        "design_id": "PD_260",
+        "name": "hBreast_320g"
+      },
+      "num_gene_targets": 313,
+      "species": "Human",
+      "tissue": "Breast",
+      "type": {
+        "descriptor": "predesigned"
+      }
+    },
+    "spec_version": "0.1.0",
+    "targets": [
+      {
+        "codewords": [
+          288
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000121270",
+            "name": "ABCC11"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          135
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000107796",
+            "name": "ACTA2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          76
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163017",
+            "name": "ACTG2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          88
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000168615",
+            "name": "ADAM9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          317
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000123146",
+            "name": "ADGRE5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          251
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196616",
+            "name": "ADH1B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          313
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000181092",
+            "name": "ADIPOQ"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          125
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000173467",
+            "name": "AGR3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          221
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000169877",
+            "name": "AHSP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          21
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000204472",
+            "name": "AIF1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          123
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000187134",
+            "name": "AKR1C1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          36
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196139",
+            "name": "AKR1C3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          68
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000184254",
+            "name": "ALDH1A3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          265
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000091879",
+            "name": "ANGPT2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          89
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000206560",
+            "name": "ANKRD28"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          244
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000154065",
+            "name": "ANKRD29"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          71
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000148513",
+            "name": "ANKRD30A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          276
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000128383",
+            "name": "APOBEC3A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          330
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000179750",
+            "name": "APOBEC3B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          105
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000130208",
+            "name": "APOC1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          2
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000240583",
+            "name": "AQP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          50
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000165272",
+            "name": "AQP3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          284
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000169083",
+            "name": "AR"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          308
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000166148",
+            "name": "AVPR1A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          77
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000182240",
+            "name": "BACE2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          129
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000153064",
+            "name": "BANK1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          102
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000176788",
+            "name": "BASP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          119
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000165810",
+            "name": "BTNL9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          266
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000166920",
+            "name": "C15orf48"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          267
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000173372",
+            "name": "C1QA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          238
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000159189",
+            "name": "C1QC"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          293
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000115998",
+            "name": "C2orf42"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          133
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000178776",
+            "name": "C5orf46"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          252
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000188112",
+            "name": "C6orf132"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          339
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000105974",
+            "name": "CAV1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          98
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000168497",
+            "name": "CAVIN2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          152
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000108091",
+            "name": "CCDC6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          93
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000091986",
+            "name": "CCDC80"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          130
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000115009",
+            "name": "CCL20"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          46
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000271503",
+            "name": "CCL5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          12
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000108700",
+            "name": "CCL8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          277
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000110092",
+            "name": "CCND1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          143
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000260916",
+            "name": "CCPG1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          16
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000126353",
+            "name": "CCR7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          25
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000170458",
+            "name": "CD14"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          141
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000177575",
+            "name": "CD163"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          338
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000177455",
+            "name": "CD19"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          75
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000158481",
+            "name": "CD1C"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          239
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000198821",
+            "name": "CD247"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          42
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000139193",
+            "name": "CD27"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          292
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000120217",
+            "name": "CD274"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          298
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000167286",
+            "name": "CD3D"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          107
+        ],
+        "info": {
+          "gene_coverage": 13
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000198851",
+            "name": "CD3E"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          216
+        ],
+        "info": {
+          "gene_coverage": 9
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000160654",
+            "name": "CD3G"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          40
+        ],
+        "info": {
+          "gene_coverage": 16
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000010610",
+            "name": "CD4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          269
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000129226",
+            "name": "CD68"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          166
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000110848",
+            "name": "CD69"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          197
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000105369",
+            "name": "CD79A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          304
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000007312",
+            "name": "CD79B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          190
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000121594",
+            "name": "CD80"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          154
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000112149",
+            "name": "CD83"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          4
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000114013",
+            "name": "CD86"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          245
+        ],
+        "info": {
+          "gene_coverage": 12
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000153563",
+            "name": "CD8A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          310
+        ],
+        "info": {
+          "gene_coverage": 12
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000172116",
+            "name": "CD8B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          228
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000010278",
+            "name": "CD9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          33
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000125810",
+            "name": "CD93"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          240
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000128283",
+            "name": "CDC42EP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          32
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000039068",
+            "name": "CDH1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          156
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000086548",
+            "name": "CEACAM6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          191
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000124469",
+            "name": "CEACAM8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          326
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000117724",
+            "name": "CENPF"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          273
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000137975",
+            "name": "CLCA2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          189
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000189143",
+            "name": "CLDN4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          181
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000184113",
+            "name": "CLDN5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          202
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000176435",
+            "name": "CLEC14A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          249
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000197992",
+            "name": "CLEC9A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          241
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000184293",
+            "name": "CLECL1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          34
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000159212",
+            "name": "CLIC6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          215
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163751",
+            "name": "CPA3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          165
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000145708",
+            "name": "CRHBP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          301
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000103196",
+            "name": "CRISPLD2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          250
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000108342",
+            "name": "CSF3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          15
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000116761",
+            "name": "CTH"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          248
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163599",
+            "name": "CTLA4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          305
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000100448",
+            "name": "CTSG"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          210
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000085733",
+            "name": "CTTN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          131
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000168329",
+            "name": "CX3CR1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          62
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000107562",
+            "name": "CXCL12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          324
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000161921",
+            "name": "CXCL16"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          227
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163735",
+            "name": "CXCL5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          289
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000121966",
+            "name": "CXCR4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          55
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000140465",
+            "name": "CYP1A1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          56
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000115165",
+            "name": "CYTIP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          28
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000167657",
+            "name": "DAPK3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          212
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000099958",
+            "name": "DERL3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          201
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000161249",
+            "name": "DMKN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          17
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000154099",
+            "name": "DNAAF1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          9
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000101457",
+            "name": "DNTTIP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          314
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000143196",
+            "name": "DPT"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          8
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000134755",
+            "name": "DSC2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          306
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000096696",
+            "name": "DSP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          192
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000151914",
+            "name": "DST"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          283
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000158050",
+            "name": "DUSP2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          302
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000138166",
+            "name": "DUSP5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          128
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000078401",
+            "name": "EDN1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          218
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000136160",
+            "name": "EDNRB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          259
+        ],
+        "info": {
+          "gene_coverage": 3
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000172889",
+            "name": "EGFL7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          322
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000146648",
+            "name": "EGFR"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          90
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000187840",
+            "name": "EIF4EBP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          311
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163435",
+            "name": "ELF3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          97
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000135374",
+            "name": "ELF5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          229
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000154380",
+            "name": "ENAH"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          116
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000119888",
+            "name": "EPCAM"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          169
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000141736",
+            "name": "ERBB2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          187
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000178607",
+            "name": "ERN1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          295
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000164283",
+            "name": "ESM1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          275
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000091831",
+            "name": "ESR1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          268
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000065809",
+            "name": "FAM107B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          145
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000197872",
+            "name": "FAM49A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          115
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000169710",
+            "name": "FASN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          237
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000162458",
+            "name": "FBLIM1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          19
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000077942",
+            "name": "FBLN1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          78
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000179639",
+            "name": "FCER1A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          254
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000158869",
+            "name": "FCER1G"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          200
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000203747",
+            "name": "FCGR3A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          343
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000127951",
+            "name": "FGL2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          45
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000136068",
+            "name": "FLNB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          162
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000129514",
+            "name": "FOXA1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          315
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000176692",
+            "name": "FOXC2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          203
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000049768",
+            "name": "FOXP3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          331
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000070404",
+            "name": "FSTL3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          204
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000107485",
+            "name": "GATA3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          67
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000165474",
+            "name": "GJB2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          264
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000139278",
+            "name": "GLIPR1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          220
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000115523",
+            "name": "GNLY"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          83
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000169508",
+            "name": "GPR183"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          84
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000145649",
+            "name": "GZMA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          27
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000100453",
+            "name": "GZMB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          328
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000113088",
+            "name": "GZMK"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          132
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000135077",
+            "name": "HAVCR2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          253
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000140287",
+            "name": "HDC"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          233
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000137309",
+            "name": "HMGA1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          111
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000095066",
+            "name": "HOOK2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          176
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000175879",
+            "name": "HOXD8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          43
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000128709",
+            "name": "HOXD9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          225
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000110169",
+            "name": "HPX"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          340
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000017427",
+            "name": "IGF1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          335
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000140749",
+            "name": "IGSF6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          38
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000134460",
+            "name": "IL2RA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          1
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000147168",
+            "name": "IL2RG"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          336
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000185291",
+            "name": "IL3RA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          160
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000168685",
+            "name": "IL7R"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          285
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000169896",
+            "name": "ITGAM"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          195
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000140678",
+            "name": "ITGAX"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          222
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000135916",
+            "name": "ITM2C"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          213
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000173801",
+            "name": "JUP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          196
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000065427",
+            "name": "KARS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          14
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000128052",
+            "name": "KDR"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          279
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000157404",
+            "name": "KIT"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          161
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000102554",
+            "name": "KLF5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          246
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000111796",
+            "name": "KLRB1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          271
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000134545",
+            "name": "KLRC1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          325
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000134539",
+            "name": "KLRD1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          60
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000150045",
+            "name": "KLRF1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          348
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000186847",
+            "name": "KRT14"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          30
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000171346",
+            "name": "KRT15"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          231
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000186832",
+            "name": "KRT16"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          124
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000108244",
+            "name": "KRT23"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          142
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000186081",
+            "name": "KRT5"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          247
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000185479",
+            "name": "KRT6B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          342
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000135480",
+            "name": "KRT7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          211
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000170421",
+            "name": "KRT8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          70
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000089692",
+            "name": "LAG3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          224
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000133706",
+            "name": "LARS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          29
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000111716",
+            "name": "LDHB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          303
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000174697",
+            "name": "LEP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          260
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000119862",
+            "name": "LGALSL"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          318
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000128342",
+            "name": "LIF"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          150
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000239961",
+            "name": "LILRA4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          286
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000175445",
+            "name": "LPL"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          316
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000110031",
+            "name": "LPXN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          139
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000172061",
+            "name": "LRRC15"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          170
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000227507",
+            "name": "LTB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          234
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000139329",
+            "name": "LUM"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          137
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000112799",
+            "name": "LY86"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          92
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000124466",
+            "name": "LYPD3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          320
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000090382",
+            "name": "LYZ"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          255
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000107968",
+            "name": "MAP3K8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          74
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000135679",
+            "name": "MDM2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          163
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000102802",
+            "name": "MEDAG"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          209
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000148773",
+            "name": "MKI67"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          236
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000115648",
+            "name": "MLPH"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          296
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196611",
+            "name": "MMP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          81
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000262406",
+            "name": "MMP12"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          118
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000087245",
+            "name": "MMP2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          158
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000173269",
+            "name": "MMRN2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          219
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163563",
+            "name": "MNDA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          230
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000005381",
+            "name": "MPO"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          101
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000260314",
+            "name": "MRC1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          173
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000156738",
+            "name": "MS4A1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          108
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000184956",
+            "name": "MUC6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          177
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196091",
+            "name": "MYBPC1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          94
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000133392",
+            "name": "MYH11"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          148
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000065534",
+            "name": "MYLK"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          7
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000167306",
+            "name": "MYO5B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          323
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000170476",
+            "name": "MZB1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          168
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000134440",
+            "name": "NARS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          297
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000149294",
+            "name": "NCAM1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          262
+        ],
+        "info": {
+          "gene_coverage": 3
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000185633",
+            "name": "NDUFA4L2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          334
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000105374",
+            "name": "NKG7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          280
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000163072",
+            "name": "NOSTRIN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          223
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000107833",
+            "name": "NPM3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          5
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000145247",
+            "name": "OCIAD2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          347
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000171199",
+            "name": "OPRPN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          26
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000180914",
+            "name": "OXTR"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          51
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000166803",
+            "name": "PCLAF"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          11
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000106333",
+            "name": "PCOLCE"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          257
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000188389",
+            "name": "PDCD1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          18
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000197646",
+            "name": "PDCD1LG2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          290
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000065989",
+            "name": "PDE4A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          99
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000134853",
+            "name": "PDGFRA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          232
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000113721",
+            "name": "PDGFRB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          226
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000004799",
+            "name": "PDK4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          198
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000261371",
+            "name": "PECAM1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          193
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000197329",
+            "name": "PELI1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          194
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000082175",
+            "name": "PGR"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          178
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000162896",
+            "name": "PIGR"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          299
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000137193",
+            "name": "PIM1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          309
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000166428",
+            "name": "PLD4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          122
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000285437",
+            "name": "POLR2J3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          291
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000133110",
+            "name": "POSTN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          58
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000132170",
+            "name": "PPARG"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          300
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000057657",
+            "name": "PRDM1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          61
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000180644",
+            "name": "PRF1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          175
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000107317",
+            "name": "PTGDS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          24
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000105894",
+            "name": "PTN"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          48
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000081237",
+            "name": "PTPRC"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          126
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000184924",
+            "name": "PTRHD1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          274
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000172053",
+            "name": "QARS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          270
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000137502",
+            "name": "RAB30"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          312
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000131477",
+            "name": "RAMP2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          53
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000079337",
+            "name": "RAPGEF3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          287
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000148300",
+            "name": "REXO4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          242
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000168421",
+            "name": "RHOH"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          164
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000143365",
+            "name": "RORC"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          205
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000182010",
+            "name": "RTKN2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          199
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000159216",
+            "name": "RUNX1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          327
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000189334",
+            "name": "S100A14"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          109
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196154",
+            "name": "S100A4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          346
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000143546",
+            "name": "S100A8"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          258
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000099194",
+            "name": "SCD"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          182
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000124939",
+            "name": "SCGB2A1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          73
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000124145",
+            "name": "SDC4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          171
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000166562",
+            "name": "SEC11C"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          31
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000113615",
+            "name": "SEC24A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          167
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000188404",
+            "name": "SELL"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          159
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000183569",
+            "name": "SERHL2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          183
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196136",
+            "name": "SERPINA3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          263
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000170542",
+            "name": "SERPINB9"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          138
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000104332",
+            "name": "SFRP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          10
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000106483",
+            "name": "SFRP4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          86
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000035115",
+            "name": "SH3YL1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          329
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000117090",
+            "name": "SLAMF1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          59
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000026751",
+            "name": "SLAMF7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          85
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000147454",
+            "name": "SLC25A37"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          294
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000004939",
+            "name": "SLC4A1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          208
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000138074",
+            "name": "SLC5A6"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          0
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000084070",
+            "name": "SMAP2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          136
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000102172",
+            "name": "SMS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          23
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000124216",
+            "name": "SNAI1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          214
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000164736",
+            "name": "SOX17"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          307
+        ],
+        "info": {
+          "gene_coverage": 3
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000203883",
+            "name": "SOX18"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          179
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000269404",
+            "name": "SPIB"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          54
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000104549",
+            "name": "SQLE"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          121
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000096063",
+            "name": "SRPK1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          52
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000180616",
+            "name": "SSTR2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          184
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000159167",
+            "name": "STC1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          206
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000197321",
+            "name": "SVIL"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          151
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000006128",
+            "name": "TAC1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          345
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000184292",
+            "name": "TACSTD2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          117
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000182916",
+            "name": "TCEAL7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          344
+        ],
+        "info": {
+          "gene_coverage": 3
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000125878",
+            "name": "TCF15"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          281
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196628",
+            "name": "TCF4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          20
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000081059",
+            "name": "TCF7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          140
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000176907",
+            "name": "TCIM"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          333
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000100721",
+            "name": "TCL1A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          188
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000183508",
+            "name": "TENT5C"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          235
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000137203",
+            "name": "TFAP2A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          153
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000173451",
+            "name": "THAP2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          349
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000145365",
+            "name": "TIFA"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          261
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000181847",
+            "name": "TIGIT"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          91
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000157150",
+            "name": "TIMP4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          39
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000105677",
+            "name": "TMEM147"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          49
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000048462",
+            "name": "TNFRSF17"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          35
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000196683",
+            "name": "TOMM7"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          127
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000131747",
+            "name": "TOP2A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          332
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000076554",
+            "name": "TPD52"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          256
+        ],
+        "info": {
+          "gene_coverage": 2
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000172236",
+            "name": "TPSAB1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          341
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000277734",
+            "name": "TRAC"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          157
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000076604",
+            "name": "TRAF4"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          104
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000054116",
+            "name": "TRAPPC3"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          65
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000173334",
+            "name": "TRIB1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          41
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000127824",
+            "name": "TUBA4A"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          3
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000137285",
+            "name": "TUBB2B"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          146
+        ],
+        "info": {
+          "gene_coverage": 3
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000011600",
+            "name": "TYROBP"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          243
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000109424",
+            "name": "UCP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          47
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000145390",
+            "name": "USP53"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          149
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000154978",
+            "name": "VOPP1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          217
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000110799",
+            "name": "VWF"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          207
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000140105",
+            "name": "WARS"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          282
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000148516",
+            "name": "ZEB1"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          112
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000169554",
+            "name": "ZEB2"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          66
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "id": "ENSG00000171466",
+            "name": "ZNF562"
+          },
+          "descriptor": "gene"
+        }
+      },
+      {
+        "codewords": [
+          185
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00002"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          174
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00003"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          172
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00004"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          155
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00009"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          144
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00012"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          134
+        ],
+        "info": {
+          "gene_coverage": 7
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00013"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          113
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00014"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          106
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00016"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          103
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00017"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          100
+        ],
+        "info": {
+          "gene_coverage": 5
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00019"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          96
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00022"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          95
+        ],
+        "info": {
+          "gene_coverage": 4
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00024"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          82
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00025"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          80
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00031"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          79
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00033"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          64
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00034"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          63
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00035"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          57
+        ],
+        "info": {
+          "gene_coverage": 6
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00039"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          44
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00041"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          22
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_260",
+            "name": "hBreast_320g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "NegControlProbe_00042"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          498
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_ADCY4"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          496
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_BCL2L15"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          495
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_LGI3"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          494
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_MYLIP"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          490
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_PROKR2"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          492
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_SCRIB"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          493
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_TRMU"
+          },
+          "descriptor": "negative_control"
+        }
+      },
+      {
+        "codewords": [
+          491
+        ],
+        "info": {
+          "gene_coverage": 8
+        },
+        "source": {
+          "category": "current",
+          "identity": {
+            "design_id": "PD_269",
+            "name": "hBreast_8g"
+          }
+        },
+        "type": {
+          "data": {
+            "name": "antisense_ULK3"
+          },
+          "descriptor": "negative_control"
+        }
+      }
+    ]
+  }
+}
