@@ -48,4 +48,4 @@ extractor = DinoV2FeatureExtractor()
 
 features = extractor.extract_from_tensor(image_tensor)
 
-print(features.shape)  # torch.Size([16, 384]) or [16, 768] 依照模型不同
+print(features.shape) 
