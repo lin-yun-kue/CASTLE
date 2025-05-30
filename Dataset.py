@@ -3,19 +3,15 @@ import torch
 import scanpy as sc
 import os
 import pandas as pd
+import importlib
+import encode.FeatureExtract
+importlib.reload(encode.FeatureExtract)
+from encode.FeatureExtract import GeneformerExtractor
 class STDataset(Dataset):
-    def __init__(self, data_dir = "data", samples = ["breast_g1"], sample_prop = 0.1,
-                 ge_files = "cell_feature_matrix.h5", cell_images = "/HE.tif",
-                 coords = "cells.csv.gz",
-                 transform=None):
-        '''
-        Initializing dataset, doesn't return anything.
-        :param data_dir: path for datafolder that contains one folder for each tissue sample
-        :param sample_prop: the proportion of cells in each tissue sample to use
-        :param ge_files: path for gene expression data within tissue sample folder
-        :param cell_images: path for cropped cell image patches  within tissue sample folder
-        :param transform: cell image transformation
-        '''
+    def __init__(self, data_dir = "processed_data", samples = ["breast_g1"], sample_prop = 0.1,
+                 ge_files = "gene_encode.pth", cell_images = "/HE.tif",
+                 coords = "coord_encode.pth",
+                 seed = 42, transform=None):
         self.sample_prop = sample_prop
         self.len = len(samples)
         self.ge_files = []
@@ -25,6 +21,7 @@ class STDataset(Dataset):
             self.ge_files.append(temp_ge)
             temp_coord = os.path.join(data_dir, sample, coords)
             self.coord_files.append(temp_coord)
+        self.seed = seed
 
     def __len__(self):
         '''
@@ -43,30 +40,26 @@ class STDataset(Dataset):
         '''
 
         # gene expression
-        ge_file = sc.read_10x_h5(self.ge_files[idx])
-        cell_num = ge_file.shape[0]
+        expression = torch.load(self.ge_files[idx])
+        cell_num = expression.shape[0]
         n_sample = int(cell_num * self.sample_prop)
+        torch.manual_seed(self.seed)
         cell_idx = torch.randperm(cell_num)[:n_sample]
-        expression = torch.tensor(ge_file.X.toarray(), dtype=torch.int8)[cell_idx, :]
+        expression = expression[cell_idx, :]
 
         # images
         images = torch.randn(n_sample, 3, 32, 32)
 
         # coordinates
-        coord_table = pd.read_csv(self.coord_files[idx])
-        coords = torch.tensor(coord_table[["x_centroid", "y_centroid"]].values, dtype=torch.float)[cell_idx, :]
+        coords = torch.load(self.coord_files[idx])[cell_idx, :]
 
-        gene_names = ge_file.var_names.tolist()
-
-        return images, expression, coords, gene_names
+        return images, expression, coords
 
 train_dataset = STDataset()
 train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, pin_memory = True)
 for batch in train_loader:
-    images, expression, coord, gene_names = batch
+    images, expression, coord = batch
     print("Images shape:", images.shape)         # Expected: [1, N_cells, 3, 32, 32]
     print("Expression shape:", expression.shape) # Expected: [1, N_cells, g]
     print("Coord shape:", coord.shape)           # Expected: [1, N_cells, 2]
-    print("Gene names shape:", len(gene_names)) # Expected: should error or be inconsistent as gene_names is a list of strings
-    print(gene_names[:10])
     break

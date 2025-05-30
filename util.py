@@ -7,6 +7,9 @@ import h5py
 from matplotlib.collections import PatchCollection
 from tqdm import tqdm
 import tifffile as tiff
+import scanpy as sc
+import pandas as pd
+import torch
 
 def save_hdf5(output_fpath, asset_dict, attr_dict=None, mode='a', auto_chunk=True, chunk_size=None):
     """
@@ -242,3 +245,29 @@ def process_and_visualize_image(file_path, patch_file, coords_center, target_pat
     # Delete variables that are no longer used
     del intensity_image, patcher
     gc.collect()
+
+def process_raw_expression(sample, thres = 100, raw_dir = "data", processed_dir = "processed_data"):
+    adata = sc.read_10x_h5(os.path.join(raw_dir, sample, "cell_feature_matrix.h5"))
+
+    # rename gene_id and total counts (requirement for Geneformer Tokenizer)
+    adata.var.rename(columns={"gene_ids": "ensembl_id"}, inplace=True)
+    adata.obs["n_counts"] = adata.X.sum(axis=1).A1 if hasattr(adata.X, "A1") else np.array(
+        adata.X.sum(axis=1)).flatten()
+    adata.obs["filter_pass"] = 1
+
+    # filter out
+    adata = adata[adata.obs["n_counts"] >= thres].copy()
+    print(f"{sample} has {adata.X.shape[0]} cells after filtering.")
+
+    # create processed adata object
+    print(f"Writing h5ad file...")
+    adata.write(os.path.join(raw_dir, sample, "preprocessed.h5ad"))
+    print(f"Process h5ad done!")
+    return list(adata.obs_names)
+
+def process_raw_coord(from_dir, filtered_id):
+    coord_file = os.path.join(from_dir, "cells.csv.gz")
+    coord_table = pd.read_csv(coord_file)
+    coord_table = coord_table[coord_table["cell_id"].astype(str).isin(filtered_id)]
+    coords = torch.tensor(coord_table[["x_centroid", "y_centroid"]].values, dtype=torch.long)
+    return coords

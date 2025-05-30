@@ -27,10 +27,15 @@ cells.head()
 ### gene expression matrix
 import scanpy as sc
 import torch
+import os
+data_folder = "data/breast_g1"
 adata = sc.read_10x_h5(os.path.join(data_folder, "cell_feature_matrix.h5"))
+adata.var["gene_ids"]
 print(adata)
 adata.X[:3].todense() # we do need to care whether we need to normalize the gene expression data
 adata.var_names[:10] ## can be used as column names too
+type(adata.var_names)
+pd.Index(adata.var_names).astype(str).tolist()
 gene_expression = torch.tensor(adata.X.toarray(), dtype=torch.float32)
 gene_expression.shape
 
@@ -120,3 +125,82 @@ coords_um = np.array(coords)
 coords_h = np.concatenate([coords_um, np.ones((coords_um.shape[0], 1))], axis=1)
 coords_px = coords_h @ affine
 coords_px = coords_px[:, :2]
+
+# check the token dictionary
+import pickle
+import mygene
+with open("encode/token_dictionary_gc30M.pkl", "rb") as f:
+    toekn_dict = pickle.load(f)
+len(toekn_dict.keys())
+toekn_dict["<cls>"]
+"<cls>" in toekn_dict
+toekn_dict.keys()
+toekn_dict["ACTA2"]
+mg = mygene.MyGeneInfo()
+symbols = ["ACTA2"]
+result = mg.querymany(symbols, scopes = "symbol", fields = "ensembl.gene", species = "human")
+result["ensembl"]
+max_token_id = max(toekn_dict.values())
+next_token_id = max_token_id + 1
+# # Add <cls> and <eos> if not already present
+# if "<cls>" not in toekn_dict:
+#     toekn_dict["<cls>"] = next_token_id
+#     next_token_id += 1
+#
+# if "<eos>" not in toekn_dict:
+#     toekn_dict["<eos>"] = next_token_id
+#
+# # Save the patched dictionary
+# with open("encode/token_dictionary_gc30M_patched.pkl", "wb") as f:
+#     pickle.dump(toekn_dict, f)
+
+
+### extract with geneformer
+import scanpy as sc
+import numpy as np
+data_folder = "data/breast_g1"
+adata = sc.read_10x_h5(os.path.join(data_folder, "cell_feature_matrix.h5"))
+adata.var.rename(columns={"gene_ids": "ensembl_id"}, inplace=True)
+adata.obs["n_counts"] = adata.X.sum(axis=1).A1 if hasattr(adata.X, "A1") else np.array(adata.X.sum(axis=1)).flatten().astype(int)
+min(adata.obs["n_counts"].values)
+adata.obs["filter_pass"] = 1
+adata.write("data/breast_g1/preprocessed.h5ad")
+
+df = pd.read_parquet("data/breast_g1/transcripts.parquet")
+
+
+from geneformer import TranscriptomeTokenizer
+
+tokenizer = TranscriptomeTokenizer(
+    custom_attr_name_dict=None,       # or {"cell_type": "cell_type"} if needed
+    model_input_size=2048,            # or 4096 for 95M
+    special_token=False,              # True for 95M
+    collapse_gene_ids=True
+)
+
+tokenizer.tokenize_data(
+    data_directory="data/breast_g1",                # current directory
+    output_directory="processed_data/breast_g1",
+    output_prefix="tokenized",
+    file_format="h5ad"
+)
+
+from datasets import load_from_disk
+from torch.nn.utils.rnn import pad_sequence
+tokenized_dataset = load_from_disk("processed_data/breast_g1/tokenized.dataset")
+input_ids_list = [torch.tensor(seq) for seq in tokenized_dataset["input_ids"]]
+input_ids = pad_sequence(input_ids_list, batch_first=True, padding_value=0)
+attention_mask = (input_ids != 0).long()  # padding mask
+
+# Move to device
+from transformers import AutoTokenizer, AutoModelForMaskedLM
+
+# Use the 30M or 95M model from Hugging Face
+model_name = "ctheodoris/Geneformer"  # or "ctheodoris/Geneformer-95M"
+
+model = AutoModelForMaskedLM.from_pretrained("ctheodoris/Geneformer")
+model.eval()
+with torch.no_grad():
+    outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
