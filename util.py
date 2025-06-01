@@ -230,7 +230,8 @@ def process_and_visualize_image(file_path, patch_file, coords_center, target_pat
 
     print("Patching: create image dataset (X) ...")
     # Path for the .h5 image dataset
-    h5_path = os.path.join(patch_file)
+    h5_path = os.path.join(patch_file, "cell_patch_sample.h5")
+    vis_path = os.path.join(patch_file, "cell_location.png")
 
     # Create the patcher object to extract patches (localized square sub-region of an image) from an image at specified coordinates.
     patcher = Patcher(
@@ -241,6 +242,7 @@ def process_and_visualize_image(file_path, patch_file, coords_center, target_pat
 
     # Build and Save patches to an HDF5 file
     patcher.to_h5(h5_path, extra_assets={'barcode': barcodes})
+    patcher.save_visualization(vis_path, vis_width=1000, dpi=300)
 
     # Delete variables that are no longer used
     del intensity_image, patcher

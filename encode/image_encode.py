@@ -1,6 +1,8 @@
 import torch
 import torch.nn.functional as F
-
+from torch.utils.data import TensorDataset
+from torch.utils.data import DataLoader
+from tqdm import tqdm
 
 class DinoV2FeatureExtractor:
     def __init__(self, model_name: str = 'dinov2_vits14', device: str = None):
@@ -37,15 +39,20 @@ class DinoV2FeatureExtractor:
             Tensor: [N, D] dinov2_vits14:D=384; dinov2_vitb14:D=768
         """
         x = self.preprocess_tensor(image_tensor)
+        dataset = TensorDataset(x)
+        loader = DataLoader(dataset, batch_size=10, num_workers=0)
+        all_features = []
         with torch.no_grad():
-            features = self.model(x)
-        return features
+            for (batch,) in tqdm(loader, desc="Extracting image features"):
+                features = self.model(batch)
+                all_features.append(features)
+        return torch.cat(all_features, dim=0)
     
 
-image_tensor = torch.randn(16, 3, 32, 32)  # [N, 3, 32, 32]
+image_tensor = torch.randn(4000, 3, 32, 32)  # [N, 3, 32, 32]
 
 extractor = DinoV2FeatureExtractor()
 
 features = extractor.extract_from_tensor(image_tensor)
 
-print(features.shape) 
+print(features.shape)
