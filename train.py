@@ -8,31 +8,32 @@ from tqdm import tqdm
 from sklearn.cluster import KMeans
 
 
+torch.cuda.manual_seed(42)   
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
     "data_percentage": 0.1,       # 
-    "lr":0.0003,               # learning rate
-    "weight_decay":0.0000001,  # weight decay
-    "max_epoch":100,
+    "lr": 0.0003,               # learning rate
+    "weight_decay": 0.0000001,  # weight decay
+    "max_epoch": 10,
     # "opt": "admin",             # admin | sgd
     # "init": "k-mean",
-    "dims": [64, 32, 16, 8],
+    "dims": [1024, 256, 64],
     "n_cluster": 5,
     "alpha": 1
 }
 
 
 def main():
-
-    model = ClustEncoder(config["dims"], alpha=config["alpha"])
-    model = torch.compile(model)
-    model.to(device)
+    model = ClustEncoder(config["dims"], activation=nn.Tanh(), final_activation=nn.Tanh())
+    print(model)
+    # model = torch.compile(model)
+    model = model.to(device)
     train(model)
 
 
-def train(model, dataloader=None):
+def train(model):
 
 
     optimizer = optim.Adam(model.parameters(),lr=config["lr"], weight_decay=config["weight_decay"])
@@ -43,32 +44,46 @@ def train(model, dataloader=None):
 
     # get centroid
     kmeans = KMeans(config["n_cluster"], n_init=30, random_state=42)
-    data = dataloader.data #todo 
-    data = data.to(device)
-    encoded_data = model.encoder(data).detach().cpu()
-    pred = kmeans.fit_predict(encoded_data)
-    centroid = torch.tensor(kmeans.cluster_centers_, requires_grad=True).cuda()
+
+    gene_data = torch.load('processed_data\\breast_g1\\gene_encode.pth')
+    spatial_data = torch.load('processed_data\\breast_g1\\coord_encode.pth')
+    img_data = torch.randn(4483, 384)
+    combined_data = torch.cat((gene_data, spatial_data, img_data), dim=1).detach() # [5, 1024]
+    # print(combined_data[0])
+    # print(combined_data.shape)
+
+    pred = kmeans.fit_predict(combined_data)
+    
+    centroid = torch.tensor(kmeans.cluster_centers_, dtype=torch.float32, requires_grad=False, device=device)
+    model.eval()
+    centroid_z = model(centroid).detach()
+    # print("centroid Z")
+    # print(centroid_z[0])
+
+    combined_data = combined_data.cuda()
 
 
-
+    model.train()            
     for epoch in tqdm(range(config["max_epoch"])):
 
-        model.train()
+        z = model(combined_data) # [N, d]
+        # print("Z")
+        # print(z[0])
+        q = soft_cluster(z, centroid_z, config["alpha"])
+        # print("Q")
+        # print(q[1])
+        p = target_distribution(q)
+        # print("P")
+        # print(p[0])
 
-        #todo
-        for x in dataloader:
+        loss = criterion(q.log(), p)
 
-            x = x.to(device)
-            
-            z = model(x) # [batch, d]
-            q = soft_cluster(z, centroid, config["alpha"])
-            p = target_distribution(q)
-            loss = criterion(q.log(), p)
+        loss.backward()
 
-            loss.backward()
-            optimizer.step()
+        optimizer.step()
+        optimizer.zero_grad()
 
-            print(f"Loss/train: {loss}")
+        print(f"Loss/train: {loss}")
     
     torch.save(model.state_dict(), './chkpts/model.pth')
 
@@ -77,6 +92,8 @@ def soft_cluster( z, centroid, alpha):
     # z: [batch, d]
     # centroid: [n_cluster, d]
     diff = torch.sum((z.unsqueeze(1) - centroid) ** 2, 2) #[batch, 1, d] => [batch, n_cluster, d] => [batch, n_cluster]
+    print("diff")
+    print(diff[0])
     numerator = 1.0 / (1.0 + (diff / alpha))
     power = (alpha + 1.0) / 2
     numerator = numerator ** power
