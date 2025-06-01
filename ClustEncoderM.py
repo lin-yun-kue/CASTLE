@@ -42,5 +42,6 @@ class ClustEncoder(nn.Module):
 
     def forward(self, x):
         z = self.encoder(x)
+        # z = self.norm(z)
         return z
     
