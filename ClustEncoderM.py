@@ -20,8 +20,6 @@ class ClustEncoder(nn.Module):
         self.encoder.apply(self._init_weight)
         # self.norm = nn.BatchNorm1d(dims[-1])
 
-        # self.assignment = SoftClusterAssignment(num_cluster, dims[-1])
-
 
 
     def _add_linear_layer(self, dims, activation, dropout):

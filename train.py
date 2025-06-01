@@ -20,7 +20,7 @@ config = {
     "lr": 0.1,               # learning rate
     "weight_decay": 0.0000001,  # weight decay
     "max_epoch": 50,
-    "dims": [1024, 64, 64, 16],
+    "dims": [1024, 64, 16],
     "n_cluster": 19,
     "alpha": 1
 }
