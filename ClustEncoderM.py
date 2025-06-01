@@ -18,7 +18,7 @@ class ClustEncoder(nn.Module):
 
         self.encoder = nn.Sequential(*encoder_layer)
         self.encoder.apply(self._init_weight)
-        self.norm = nn.BatchNorm1d(dims[-1])
+        # self.norm = nn.BatchNorm1d(dims[-1])
 
         # self.assignment = SoftClusterAssignment(num_cluster, dims[-1])
 
@@ -28,7 +28,8 @@ class ClustEncoder(nn.Module):
         layers=[]
         for idx in range(len(dims)-1):
             layers.append(nn.Linear(dims[idx], dims[idx + 1]))
-            layers.append(activation)
+            if activation is not None:
+                layers.append(activation)
             if dropout is not None:
                 layers.append(nn.Dropout(dropout))
         return layers
@@ -41,6 +42,5 @@ class ClustEncoder(nn.Module):
 
     def forward(self, x):
         z = self.encoder(x)
-        z = self.norm(z)
         return z
     
