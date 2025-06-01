@@ -204,3 +204,47 @@ with torch.no_grad():
     outputs = model(input_ids=input_ids, attention_mask=attention_mask)
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+
+## explore H&E image again
+pixel = 0.2125
+import pandas as pd
+import os
+import numpy as np
+data_folder = "data/breast_g1"
+align = pd.read_csv(os.path.join(data_folder, "align.csv"), header = None)
+# Load the CSV
+cells = pd.read_csv(os.path.join(data_folder, "cells.csv.gz"))  # or use "cells.parquet" with pd.read_parquet
+coords = cells[["x_centroid", "y_centroid"]]
+coords = coords/pixel
+coords
+coords = coords.to_numpy()
+coords = np.c_[coords, np.ones(coords.shape[0])]
+coords = coords.transpose()
+converted = np.matmul(np.linalg.inv(align.to_numpy()), coords)
+converted.T[:10, : ]
+
+##
+import h5py
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+import os
+
+# image = tiff.imread(os.path.join(data_folder,"HE.tif"))
+sample_coords = converted.transpose()[:10, :1]
+cells[["x_centroid", "y_centroid"]][:10]
+with h5py.File("data/breast_g1/cell_patch_sample.h5", "r") as f:
+    imgs = f["img"]  # assumes the dataset is named 'img'
+    print(f"Total images: {len(imgs)}")
+
+    for i in range(len(imgs)):
+        arr = imgs[i]
+        img = Image.fromarray(arr)
+
+        # Show using matplotlib
+        plt.imshow(img)
+        plt.title(f"Image {i}")
+        plt.axis("off")
+        plt.show()
+
