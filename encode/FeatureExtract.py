@@ -31,7 +31,7 @@ class GeneformerExtractor:
         tokenized_dataset = load_from_disk(dataset)
         input_ids_list = [torch.tensor(seq) for seq in tokenized_dataset["input_ids"]]
         input_ids = pad_sequence(input_ids_list, batch_first=True, padding_value=0)
-        loader = DataLoader(input_ids, batch_size = 256)
+        loader = DataLoader(input_ids, batch_size = 10)
         all_hidden_states = []
         with torch.no_grad():
             for batch in tqdm(loader):
