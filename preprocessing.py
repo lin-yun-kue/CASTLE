@@ -23,7 +23,7 @@ for sample in samples:
     from_dir = os.path.join(raw_dir, sample)
     to_dir = os.path.join(processed_dir, sample)
 
-    current_encoded_gene  = torch.load(os.path.join(to_dir, "encoded_gene.pth"))
+    current_encoded_gene  = torch.load(os.path.join(to_dir, "gene_encode.pth"))
     if current_encoded_gene.shape[0] != len(selected_id):
         # initialize geneformer
         gene_extractor = GeneformerExtractor()
