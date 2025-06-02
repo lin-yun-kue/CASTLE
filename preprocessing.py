@@ -23,11 +23,13 @@ for sample in samples:
     from_dir = os.path.join(raw_dir, sample)
     to_dir = os.path.join(processed_dir, sample)
 
-    # initialize geneformer
-    gene_extractor = GeneformerExtractor()
-    print(gene_extractor.model)
-    gene_extractor.tokenize_data(from_dir, to_dir) # create dataset in processed data
-    gene_extractor.encode(to_dir) # save gene embedding to pth file
+    current_encoded_gene  = torch.load(os.path.join(to_dir, "encoded_gene.pth"))
+    if current_encoded_gene.shape[0] != len(selected_id):
+        # initialize geneformer
+        gene_extractor = GeneformerExtractor()
+        print(gene_extractor.model)
+        gene_extractor.tokenize_data(from_dir, to_dir) # create dataset in processed data
+        gene_extractor.encode(to_dir) # save gene embedding to pth file
 
 
 
