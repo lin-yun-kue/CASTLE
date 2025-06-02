@@ -269,3 +269,6 @@ plot_hist('gene_encode.pth', 'Gene Encoded Data')
 plot_hist('coord_encode.pth', 'Spatial Encoded Data')
 plot_hist('img_encode.pth', 'Image Encoded Data')
 plot_hist('raw_expression.pth', 'Raw Gene Expression Data')
+
+import torch
+a = torch.load("processed_data/breast_g1/gene_encode.pth")

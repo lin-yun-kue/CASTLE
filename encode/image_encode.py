@@ -45,7 +45,7 @@ class DinoV2FeatureExtractor:
         with torch.no_grad():
             for (batch,) in tqdm(loader, desc="Extracting image features"):
                 features = self.model(batch)
-                all_features.append(features)
+                all_features.append(features.cpu())
         return torch.cat(all_features, dim=0)
     
 
