@@ -50,14 +50,14 @@ def main():
     acc_c, fig_c = eval_accuracy(pred_c)
     acc_g, fig_g = eval_accuracy(pred_g)
     acc_r, fig_r = eval_accuracy(pred_r)
-    wandb.log({"viz/model cm": fig_m})
-    wandb.log({"viz/concat cm": fig_c})
-    wandb.log({"viz/geneformer cm": fig_g})
-    wandb.log({"viz/raw cm": fig_r})
-    wandb.log({"model acc": acc_m})
-    wandb.log({"concat acc": acc_c})
-    wandb.log({"geneformer acc": acc_g})
-    wandb.log({"raw acc": acc_r})
+    wandb.log({"viz/model cm": wandb.Image(fig_m)})
+    wandb.log({"viz/concat cm": wandb.Image(fig_c)})
+    wandb.log({"viz/geneformer cm": wandb.Image(fig_g)})
+    wandb.log({"viz/raw cm": wandb.Image(fig_r)})
+    wandb.log({"model acc": wandb.Image(acc_m)})
+    wandb.log({"concat acc": wandb.Image(acc_c)})
+    wandb.log({"geneformer acc": wandb.Image(acc_g)})
+    wandb.log({"raw acc": wandb.Image(acc_r)})
 
 def train(model):
     wandb.login()
@@ -91,7 +91,7 @@ def train(model):
 
         z_cpu = z.cpu().detach().numpy()
         cent, _, plot = get_centre_pred(z_cpu, ground_truth)
-        wandb.log({"viz/model": plot}, step=epoch)
+        wandb.log({"viz/model": wandb.Image(plot)}, step=epoch)
 
         q = soft_cluster(z, cent, config["alpha"])
         p = target_distribution(q)
@@ -122,14 +122,14 @@ def train(model):
         z = model(cat_data)
         z_cpu = z.cpu().detach().numpy()
         _, pred_m, plot = get_centre_pred(z_cpu, ground_truth)
-        wandb.log({"viz/model": plot})
+        wandb.log({"viz/model": wandb.Image(plot)})
 
     _, pred_c, plot_c= get_centre_pred(cat_data.cpu().detach().numpy(), ground_truth, reduce_dim="umap")
-    wandb.log({"viz/cat": plot_c})
+    wandb.log({"viz/cat": wandb.Image(plot_c)})
     _, pred_g, plot_g = get_centre_pred(gene_data.cpu().detach().numpy(), ground_truth, reduce_dim="umap")
-    wandb.log({"viz/geneformer": plot_g})
+    wandb.log({"viz/geneformer": wandb.Image(plot_g)})
     _, gene_r, plot_r = get_centre_pred(gene_raw_data.cpu().detach().numpy(), ground_truth, reduce_dim="umap")
-    wandb.log({"viz/raw": plot_r})
+    wandb.log({"viz/raw": wandb.Image(plot_r)})
 
 
     return pred_m, pred_c, pred_g, gene_r
