@@ -6,8 +6,8 @@ from tqdm import tqdm
 
 class DinoV2FeatureExtractor:
     def __init__(self, model_name: str = 'dinov2_vits14', device: str = None):
-        # self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
-        self.device = "cpu"
+        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
+        # self.device = "cpu"
         self.model = torch.hub.load('facebookresearch/dinov2', model_name).to(self.device).eval()
 
     def preprocess_tensor(self, image_tensor: torch.Tensor) -> torch.Tensor:
