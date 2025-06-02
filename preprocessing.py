@@ -11,6 +11,7 @@ import encode.image_encode
 importlib.reload(encode.image_encode)
 from encode.image_encode import DinoV2FeatureExtractor
 import pandas as pd
+import gc
 
 raw_dir = "data"
 processed_dir = "processed_data"
@@ -53,7 +54,12 @@ for sample in samples:
             tensor = torch.from_numpy(arr).permute(2, 0, 1).float()/255.0
             image_tensor.append(tensor)
 
+    del imgs, barcodes
+    gc.collect()
+
     batch = torch.stack(image_tensor)
+    del image_tensor
+    gc.collect()
     extractor = DinoV2FeatureExtractor()
     features = extractor.extract_from_tensor(batch)
     torch.save(features, os.path.join(to_dir, "img_encode.pth"))
