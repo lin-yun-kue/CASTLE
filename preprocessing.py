@@ -10,6 +10,7 @@ import torch
 import encode.image_encode
 importlib.reload(encode.image_encode)
 from encode.image_encode import DinoV2FeatureExtractor
+import pandas as pd
 
 raw_dir = "data"
 processed_dir = "processed_data"
@@ -28,6 +29,8 @@ for sample in samples:
     gene_extractor.tokenize_data(from_dir, to_dir) # create dataset in processed data
     gene_extractor.encode(to_dir) # save gene embedding to pth file
 
+
+
     # spatial coordinates
     coords = util.process_raw_coord(from_dir, selected_id)
     spatial_extractor = SpatialExtractor2D()
@@ -35,6 +38,7 @@ for sample in samples:
 
     # images
     selected_id_set = set(selected_id)
+    selected_idx = []
     image_tensor = []
     with h5py.File(os.path.join(from_dir, 'cell_patch_sample.h5'), "r") as f:
         imgs = f["img"]
@@ -49,6 +53,14 @@ for sample in samples:
     extractor = DinoV2FeatureExtractor()
     features = extractor.extract_from_tensor(batch)
     torch.save(features, os.path.join(to_dir, "img_encode.pth"))
+
+    ## ground truth label
+    gt = pd.read_csv(os.path.join(from_dir, "clusters.csv"))
+    gt["Barcode"] = gt["Barcode"].astype(str)
+    gt = dict(zip(gt["Barcode"], gt["Cluster"]))
+    selected_gt = [gt.get(id, -1) for id in selected_id]
+    torch.save(torch.tensor(selected_gt, dtype = torch.int8), os.path.join(to_dir, "ground_truth.pth"))
+
 
 
 

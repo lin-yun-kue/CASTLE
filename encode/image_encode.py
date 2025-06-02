@@ -49,10 +49,10 @@ class DinoV2FeatureExtractor:
         return torch.cat(all_features, dim=0)
     
 
-image_tensor = torch.randn(4000, 3, 32, 32)  # [N, 3, 32, 32]
-
-extractor = DinoV2FeatureExtractor()
-
-features = extractor.extract_from_tensor(image_tensor)
-
-print(features.shape)
+# image_tensor = torch.randn(4000, 3, 32, 32)  # [N, 3, 32, 32]
+#
+# extractor = DinoV2FeatureExtractor()
+#
+# features = extractor.extract_from_tensor(image_tensor)
+#
+# print(features.shape)

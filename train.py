@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 from torch.nn.parameter import Parameter
 import numpy as np
 import pandas as pd
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
+import os
 
 torch.cuda.manual_seed(42)   
 
@@ -31,14 +33,20 @@ def main():
     print(model)
     # model = torch.compile(model)
     model = model.to(device)
-    train(model)
+    pred_m, pred_c, pred_g, pred_r = train(model)
+    eval_accuracy(pred_m)
+    eval_accuracy(pred_c)
+    eval_accuracy(pred_g)
+    eval_accuracy(pred_r)
 
 
 def train(model):
-    gene_data = torch.load('processed_data\\breast_g1\\gene_encode.pth')
-    spatial_data = torch.load('processed_data\\breast_g1\\coord_encode.pth')
-    img_data = torch.randn(4483, 384)
-    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).cuda() # [N, 1024]
+    data_dir = os.path.join("processed_data", "breast_g1")
+    gene_data = torch.load(os.path.join(data_dir,'gene_encode.pth'))
+    spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
+    img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
+    gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
+    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device) # [N, 1024]
 
     optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
     criterion = F.kl_div
@@ -51,7 +59,7 @@ def train(model):
         z = model(cat_data) # [N, d]
 
         z_cpu = z.cpu().detach().numpy()
-        cent = get_centre(z_cpu)
+        cent, _ = get_centre_pred(z_cpu)
 
 
         q = soft_cluster(z, cent, config["alpha"])
@@ -76,13 +84,26 @@ def train(model):
     plot_graph(loss_his)
     torch.save(model.state_dict(), './chkpts/model.pth')
 
-def get_centre(z):
+    ## final cluster output
+    with torch.no_grad():
+        z = model(cat_data)
+        z_cpu = z.cpu().detach().numpy()
+        _, pred_m = get_centre_pred(z_cpu)
+
+    _, pred_c = get_centre_pred(cat_data.cpu().detach().numpy())
+    _, pred_g = get_centre_pred(gene_data.cpu().detach().numpy())
+    _, gene_r = get_centre_pred(gene_raw_data.cpu().detach().numpy())
+
+    return pred_m, pred_c, pred_g, gene_r
+
+
+def get_centre_pred(z):
     kmeans = KMeans(config["n_cluster"], n_init=30, random_state=42)
 
     pred = kmeans.fit_predict(z)
 
     centroid = torch.tensor(kmeans.cluster_centers_, dtype=torch.float32, requires_grad=False, device=device)
-    return centroid
+    return centroid, pred
     
     # cent = Parameter(torch.Tensor(config["n_cluster"], z.shape[1]).cuda())
     # Group = pd.Series(pred, index=range(z.shape[0]), name="Group")
@@ -141,5 +162,31 @@ def plot_graph(loss_his):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+
+def eval_accuracy(pred):
+    data_dir = os.path.join("processed_data", "breast_g1")
+    ground_truth = torch.load(os.path.join(data_dir,'ground_truth.pth'))
+    ground_truth = ground_truth.cpu().detach().numpy()
+    y_true = np.asarray(ground_truth) - 1
+    y_pred = np.asarray(pred)
+    df = pd.DataFrame({"true": y_true, "pred": y_pred})
+    majority_map = (
+        df.groupby('pred')['true']
+        .agg(lambda x: x.value_counts().idxmax())
+        .to_dict()
+    )
+    y_pred_mapped = df['pred'].map(majority_map).to_numpy()
+    acc = accuracy_score(y_true, y_pred_mapped)
+    cm = confusion_matrix(y_true, y_pred_mapped)
+    # acc = accuracy_score(y_true, y_pred)
+    # cm = confusion_matrix(y_true, y_pred)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_true))
+    disp.plot(cmap = "Blues")
+    plt.title("Confusion Matrix")
+    plt.show()
+    print("Accuracy:", acc)
+    # print("confusion:", cm)
+
+
 
 main()

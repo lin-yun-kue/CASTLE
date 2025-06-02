@@ -261,6 +261,9 @@ def process_raw_expression(sample, thres = 100, raw_dir = "data", processed_dir 
     adata = adata[adata.obs["n_counts"] >= thres].copy()
     print(f"{sample} has {adata.X.shape[0]} cells after filtering.")
 
+    print(f"Writing pth file for raw gene expression...")
+    torch.save(torch.tensor(adata.X.toarray(), dtype=torch.int16), os.path.join(processed_dir, sample, "raw_expression.pth"))
+
     # create processed adata object
     print(f"Writing h5ad file...")
     adata.write(os.path.join(raw_dir, sample, "preprocessed.h5ad"))
