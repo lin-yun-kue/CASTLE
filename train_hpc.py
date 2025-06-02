@@ -22,6 +22,7 @@ import wandb
 import random
 import datetime
 import string
+from torch.optim.lr_scheduler import SequentialLR, LinearLR, CosineAnnealingLR
 
 torch.cuda.manual_seed(42)
 
@@ -29,7 +30,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
     "data_percentage": 0.1,  #
-    "lr": 0.1,  # learning rate
+    "lr": 0.5,  # learning rate
     "weight_decay": 0.0000001,  # weight decay
     "max_epoch": 50,
     "dims": [1024, 64, 16],
@@ -75,11 +76,17 @@ def train(model):
 
     optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
     criterion = F.kl_div
+    warmup_epochs = config["max_epoch"] // 10
+    linear = LinearLR(optimizer, start_factor=0.25, total_iters=warmup_epochs)
+    cosine = CosineAnnealingLR(optimizer, T_max=config["max_epoch"] - warmup_epochs)
+    scheduler = SequentialLR(optimizer, schedulers=[linear, cosine], milestones=[warmup_epochs])
 
     loss_his = []
-    model.train()
+    pbar = tqdm(total=config["max_epoch"], desc="Training Iterations", unit="batch")
     for epoch in range(config["max_epoch"]):
         # for epoch in tqdm(range(config["max_epoch"])):
+        model.train()
+        wandb.log({"LR/lr": scheduler.get_last_lr()[0]}, step=epoch)
         z = model(cat_data)  # [N, d]
 
         z_cpu = z.cpu().detach().numpy()
@@ -102,7 +109,11 @@ def train(model):
 
         entropy = -torch.sum(q * torch.log(q + 1e-6), dim=1).mean()
         # print(f"[Epoch {epoch}] KL Loss: {loss.item():.4f}, Q entropy: {entropy.item():.4f}")
+
+        scheduler.step()
         wandb.log({"KL Loss": loss.item(), "Q entory": entropy.item()}, step=epoch)
+        pbar.update(1)
+
 
     torch.save(model.state_dict(), './chkpts/model.pth')
 
