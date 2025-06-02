@@ -22,7 +22,7 @@ import wandb
 import random
 import datetime
 import string
-from torch.optim.lr_scheduler import SequentialLR, LinearLR, CosineAnnealingLR
+from torch.optim.lr_scheduler import SequentialLR, LinearLR, CosineAnnealingLR, MultiStepLR
 
 torch.cuda.manual_seed(42)
 
@@ -32,7 +32,7 @@ config = {
     "data_percentage": 0.1,  #
     "lr": 0.5,  # learning rate
     "weight_decay": 0.0000001,  # weight decay
-    "max_epoch": 50,
+    "max_epoch": 500,
     "dims": [1024, 64, 16],
     "n_cluster": 19,
     "alpha": 1,
@@ -77,9 +77,10 @@ def train(model):
     optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
     criterion = F.kl_div
     warmup_epochs = config["max_epoch"] // 10
-    linear = LinearLR(optimizer, start_factor=0.25, total_iters=warmup_epochs)
-    cosine = CosineAnnealingLR(optimizer, T_max=config["max_epoch"] - warmup_epochs)
-    scheduler = SequentialLR(optimizer, schedulers=[linear, cosine], milestones=[warmup_epochs])
+    # linear = LinearLR(optimizer, start_factor=0.25, total_iters=warmup_epochs)
+    # cosine = CosineAnnealingLR(optimizer, T_max=config["max_epoch"] - warmup_epochs)
+    # scheduler = SequentialLR(optimizer, schedulers=[linear, cosine], milestones=[warmup_epochs])
+    scheduler = MultiStepLR(optimizer, milestones=[100, 200, 300, 400], gamma=0.5)
 
     loss_his = []
     pbar = tqdm(total=config["max_epoch"], desc="Training Iterations", unit="batch")
