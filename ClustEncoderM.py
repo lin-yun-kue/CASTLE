@@ -7,18 +7,26 @@ class ClustEncoder(nn.Module):
             self, 
             dims: Iterable[int],
             activation=nn.ReLU(True),
-            final_activation=nn.ReLU(True),
+            final_encoder_activation=nn.ReLU(True),
+            final_decoder_activation = nn.ReLU(True),
             dropout=0.1,
             num_cluster=10,
             ):
         super().__init__()
         encoder_layer = self._add_linear_layer(dims[:-1], activation, dropout)
-        last_layer = self._add_linear_layer([dims[-2], dims[-1]], final_activation, dropout=None)
-        encoder_layer.extend(last_layer)
+        last_encoder_layer = self._add_linear_layer([dims[-2], dims[-1]], final_encoder_activation, dropout=None)
+        encoder_layer.extend(last_encoder_layer)
 
         self.encoder = nn.Sequential(*encoder_layer)
         self.encoder.apply(self._init_weight)
-        # self.norm = nn.BatchNorm1d(dims[-1])
+        
+        decoder_layer = self._add_linear_layer(dims[:0:-1], activation, dropout)
+        last_decoder_layer = self._add_linear_layer([dims[0], dims[1]], final_decoder_activation, dropout=None)
+        decoder_layer.extend(last_decoder_layer)
+
+        self.decoder = nn.Sequential(*decoder_layer)
+        self.decoder.apply(self._init_weight)
+        
 
 
 

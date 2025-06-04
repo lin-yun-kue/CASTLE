@@ -19,26 +19,46 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
     "data_percentage": 0.1,       # 
-    "lr": 0.1,               # learning rate
+    "lr": 0.05,               # learning rate
     "weight_decay": 0.0000001,  # weight decay
-    "max_epoch": 50,
+    "max_epoch": 100,
     "dims": [1024, 64, 16],
     "n_cluster": 19,
     "alpha": 1
 }
 
+auto_encode_config = {
+    "lr": 0.01,
+    "weight_decay": 0.0000001,
+    "max_epoch": 100
+}
+
 
 def main():
-    model = ClustEncoder(config["dims"], activation=nn.GELU(), final_activation=None)
+    model = ClustEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None)
     print(model)
     # model = torch.compile(model)
     model = model.to(device)
-    pred_m, pred_c, pred_g, pred_r = train(model)
-    eval_accuracy(pred_m)
-    eval_accuracy(pred_c)
-    eval_accuracy(pred_g)
-    eval_accuracy(pred_r)
+    # pred_m, pred_c, pred_g, pred_r = train(model)
+    pred_m = train(model)
 
+    
+    eval_accuracy(pred_m)
+    # eval_accuracy(pred_c)
+    # eval_accuracy(pred_g)
+    # eval_accuracy(pred_r)
+
+def plot_class_graph(pred):
+    unique, counts = np.unique(pred, return_counts=True)
+    
+    plt.bar(unique, counts)
+    plt.xlabel('Class')
+    plt.ylabel('Count')
+    plt.title('Prediction Histogram')
+    plt.show()
+
+def train_auto_encoder(model):
+    print("")
 
 def train(model):
     data_dir = os.path.join("processed_data", "breast_g1")
@@ -79,8 +99,8 @@ def train(model):
         entropy = -torch.sum(q * torch.log(q + 1e-6), dim=1).mean()
         print(f"[Epoch {epoch}] KL Loss: {loss.item():.4f}, Q entropy: {entropy.item():.4f}")
     
-    print(q[0])
-    print(p[0])    
+    # print(q[0])
+    # print(p[0])    
     plot_graph(loss_his)
     torch.save(model.state_dict(), './chkpts/model.pth')
 
@@ -88,13 +108,16 @@ def train(model):
     with torch.no_grad():
         z = model(cat_data)
         z_cpu = z.cpu().detach().numpy()
-        _, pred_m = get_centre_pred(z_cpu)
+        z_cent, _ = get_centre_pred(z_cpu)
+        pred_m = soft_cluster(z, z_cent, config["alpha"]).cpu().detach()
+        pred_m = np.argmax(pred_m, axis=1)
 
-    _, pred_c = get_centre_pred(cat_data.cpu().detach().numpy())
-    _, pred_g = get_centre_pred(gene_data.cpu().detach().numpy())
-    _, gene_r = get_centre_pred(gene_raw_data.cpu().detach().numpy())
+    # _, pred_c = get_centre_pred(cat_data.cpu().detach().numpy())
+    # _, pred_g = get_centre_pred(gene_data.cpu().detach().numpy())
+    # _, gene_r = get_centre_pred(gene_raw_data.cpu().detach().numpy())
 
-    return pred_m, pred_c, pred_g, gene_r
+    return pred_m
+    # return pred_m, pred_c, pred_g, gene_r
 
 
 def get_centre_pred(z):
@@ -177,9 +200,9 @@ def eval_accuracy(pred):
     )
     y_pred_mapped = df['pred'].map(majority_map).to_numpy()
     acc = accuracy_score(y_true, y_pred_mapped)
-    cm = confusion_matrix(y_true, y_pred_mapped)
+    # cm = confusion_matrix(y_true, y_pred_mapped)
     # acc = accuracy_score(y_true, y_pred)
-    # cm = confusion_matrix(y_true, y_pred)
+    cm = confusion_matrix(y_true, y_pred)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_true))
     disp.plot(cmap = "Blues")
     plt.title("Confusion Matrix")
