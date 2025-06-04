@@ -7,6 +7,7 @@ from tqdm import tqdm
 class DinoV2FeatureExtractor:
     def __init__(self, model_name: str = 'dinov2_vits14', device: str = None):
         self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
+        # self.device = "cpu"
         self.model = torch.hub.load('facebookresearch/dinov2', model_name).to(self.device).eval()
 
     def preprocess_tensor(self, image_tensor: torch.Tensor) -> torch.Tensor:
@@ -38,14 +39,14 @@ class DinoV2FeatureExtractor:
         Returns:
             Tensor: [N, D] dinov2_vits14:D=384; dinov2_vitb14:D=768
         """
-        x = self.preprocess_tensor(image_tensor)
-        dataset = TensorDataset(x)
+        dataset = TensorDataset(image_tensor)
         loader = DataLoader(dataset, batch_size=10, num_workers=0)
         all_features = []
         with torch.no_grad():
             for (batch,) in tqdm(loader, desc="Extracting image features"):
-                features = self.model(batch)
-                all_features.append(features)
+                x = self.preprocess_tensor(batch)
+                features = self.model(x)
+                all_features.append(features.cpu())
         return torch.cat(all_features, dim=0)
     
 

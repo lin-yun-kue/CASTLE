@@ -10,10 +10,13 @@ import torch.nn as nn
 
 class GeneformerExtractor:
     def __init__(self, model_name = "ctheodoris/Geneformer"):
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.tokenizer = TranscriptomeTokenizer(custom_attr_name_dict=None,
                                 model_input_size=2048, special_token=False, collapse_gene_ids=True)
         self.model = AutoModelForMaskedLM.from_pretrained(model_name, output_hidden_states=True)
         self.model.eval()
+        self.model.to(self.device)
+
 
     def tokenize_data(self, from_dir, to_dir):
         self.tokenizer.tokenize_data(
@@ -28,11 +31,12 @@ class GeneformerExtractor:
         tokenized_dataset = load_from_disk(dataset)
         input_ids_list = [torch.tensor(seq) for seq in tokenized_dataset["input_ids"]]
         input_ids = pad_sequence(input_ids_list, batch_first=True, padding_value=0)
-        loader = DataLoader(input_ids, batch_size = 256)
+        loader = DataLoader(input_ids, batch_size = 10)
         all_hidden_states = []
         with torch.no_grad():
             for batch in tqdm(loader):
-                attention_mask = (batch!=0).long()
+                batch = batch.to(self.device)
+                attention_mask = (batch!=0).long().to(self.device)
                 outputs = self.model(input_ids=batch, attention_mask=attention_mask)
                 all_hidden_states.append(outputs.hidden_states[-1].mean(1).cpu())
         hidden_states = torch.cat(all_hidden_states, dim=0)  # shape: (N, T, D)

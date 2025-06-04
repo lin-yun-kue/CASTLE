@@ -1,2 +1,3 @@
 data/breast_g1/cell_patch_sample.h5
 data/breast_g1/HE.tif
+processed_data/breast_g1/gene_encode.pth

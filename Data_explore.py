@@ -248,3 +248,27 @@ with h5py.File("data/breast_g1/cell_patch_sample.h5", "r") as f:
         plt.axis("off")
         plt.show()
 
+data_dir = os.path.join("processed_data", "breast_g1")
+gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
+spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
+img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
+gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
+
+import matplotlib.pyplot as plt
+def plot_hist(filename, title, sample_size=10000):
+    data = torch.load(os.path.join(data_dir, filename)).flatten()
+    if data.numel() > sample_size:
+        data = data[torch.randperm(data.numel())[:sample_size]]
+    plt.hist(data.cpu().detach().numpy(), bins=100)
+    plt.title(title)
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+    plt.show()
+
+plot_hist('gene_encode.pth', 'Gene Encoded Data')
+plot_hist('coord_encode.pth', 'Spatial Encoded Data')
+plot_hist('img_encode.pth', 'Image Encoded Data')
+plot_hist('raw_expression.pth', 'Raw Gene Expression Data')
+
+import torch
+a = torch.load("processed_data/breast_g1/gene_encode.pth")
