@@ -25,7 +25,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
     "data_percentage": 0.1,       #
-    "lr": 0.1,               # learning rate
+    "lr": 0.05,               # learning rate
     "weight_decay": 0.0000001,  # weight decay
     "max_epoch": 100,
     "dims": [1024, 64, 16],
@@ -37,17 +37,23 @@ config = {
 auto_encode_config = {
     "lr": 0.001,               # learning rate
     "weight_decay": 0.0000001,  # weight decay
-    "max_epoch": 3000,
+    "max_epoch": 4000,
 }
 
 
 def main():
     model = ClustAutoEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None)
     print(model)
-    # model = torch.compile(model)
+    
+    model_path = './chkpts/auto_model.pth'
+    if os.path.exists(model_path):
+        model.load_state_dict(torch.load(model_path))
+    else:
+        train_auto_encoder(model)
+        print("Can't find model.pth")
+
     model = model.to(device)
 
-    train_auto_encoder(model)
 
     pred_m = train(model.encoder)
 
