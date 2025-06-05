@@ -35,9 +35,9 @@ config = {
 }
 
 auto_encode_config = {
-    "lr": 0.01,               # learning rate
+    "lr": 0.001,               # learning rate
     "weight_decay": 0.0000001,  # weight decay
-    "max_epoch": 100,
+    "max_epoch": 3000,
 }
 
 
@@ -49,10 +49,10 @@ def main():
 
     train_auto_encoder(model)
 
-    # pred_m = train(model.encoder)
+    pred_m = train(model.encoder)
 
     
-    # eval_accuracy(pred_m)
+    eval_accuracy(pred_m)
     # eval_accuracy(pred_c)
     # eval_accuracy(pred_g)
     # eval_accuracy(pred_r)
@@ -89,10 +89,9 @@ def train_auto_encoder(model):
         optimizer.zero_grad()
 
         print(f'Epoch [{epoch+1}], Loss: {loss.item():.4f}')
-
-
-
-
+    
+    torch.save(model.state_dict(), './chkpts/auto_model.pth')
+    
 
 
 def train(model):
@@ -106,6 +105,10 @@ def train(model):
     ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
     cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
 
+    # tempZ = model(cat_data)
+    # tempZ = tempZ.cpu().detach().numpy()
+    # get_centre_pred(tempZ, ground_truth)
+    # return
     optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
     criterion = F.kl_div
 
@@ -256,7 +259,7 @@ def eval_accuracy(pred):
         .to_dict()
     )
     y_pred_mapped = df['pred'].map(majority_map).to_numpy()
-    acc = accuracy_score(y_true, y_pred_mapped)
+    acc = accuracy_score(y_true, y_pred_mapped) 
     # cm = confusion_matrix(y_true, y_pred_mapped)
     # acc = accuracy_score(y_true, y_pred)
     if config['plot']:
