@@ -19,13 +19,13 @@ samples = ["breast_g1"]
 for sample in samples:
     ## gene expression--------------------------------------------------
     # need to rewrite h5ad file to a format that geneformer can tokenize
-    selected_id = util.process_raw_expression(sample, thres = 200)
+    selected_id = util.process_raw_expression(sample, thres = 500)
 
     from_dir = os.path.join(raw_dir, sample)
     to_dir = os.path.join(processed_dir, sample)
 
-    current_encoded_gene  = torch.load(os.path.join(to_dir, "gene_encode.pth"))
-    if current_encoded_gene.shape[0] != len(selected_id):
+    gene_path = os.path.join(to_dir, "gene_encode.pth")
+    if not os.path.exists(gene_path) or torch.load(gene_path).shape[0] != len(selected_id):
         # initialize geneformer
         gene_extractor = GeneformerExtractor()
         print(gene_extractor.model)
