@@ -6,7 +6,7 @@ import importlib
 import ClustEncoderM
 
 importlib.reload(ClustEncoderM)
-from ClustEncoderM import ClustEncoder
+from ClustEncoderM import ClustAutoEncoder
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from tqdm import tqdm
 from sklearn.cluster import KMeans
@@ -41,7 +41,7 @@ config = {
 
 
 def main():
-    model = ClustEncoder(config["dims"], activation=nn.GELU(), final_activation=None)
+    model = ClustAutoEncoder(config["dims"], activation=nn.GELU(), final_activation=None)
     print(model)
     # model = torch.compile(model)
     model = model.to(device)

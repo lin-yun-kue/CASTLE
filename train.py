@@ -5,7 +5,7 @@ import torch.optim as optim
 import importlib
 import ClustEncoderM
 importlib.reload(ClustEncoderM)
-from ClustEncoderM import ClustEncoder
+from ClustEncoderM import ClustAutoEncoder
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from tqdm import tqdm
 from sklearn.cluster import KMeans
@@ -34,17 +34,25 @@ config = {
     "plot": False # can be used to silence all plots
 }
 
+auto_encode_config = {
+    "lr": 0.01,               # learning rate
+    "weight_decay": 0.0000001,  # weight decay
+    "max_epoch": 100,
+}
+
 
 def main():
-    model = ClustEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None)
+    model = ClustAutoEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None)
     print(model)
     # model = torch.compile(model)
     model = model.to(device)
-    # pred_m, pred_c, pred_g, pred_r = train(model)
-    pred_m = train(model)
+
+    train_auto_encoder(model)
+
+    # pred_m = train(model.encoder)
 
     
-    eval_accuracy(pred_m)
+    # eval_accuracy(pred_m)
     # eval_accuracy(pred_c)
     # eval_accuracy(pred_g)
     # eval_accuracy(pred_r)
@@ -59,17 +67,44 @@ def plot_class_graph(pred):
     plt.show()
 
 def train_auto_encoder(model):
-    print("")
+    # read in data
+    data_dir = os.path.join("processed_data", "breast_g1")
+    gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
+    spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
+    img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
+    # gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
+    # ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
+    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
+
+    criterion = nn.MSELoss()
+    optimizer = optim.Adam(model.parameters(), lr=auto_encode_config["lr"], weight_decay=auto_encode_config["weight_decay"])
+
+    model.train()
+    for epoch in range(auto_encode_config["max_epoch"]):
+        out = model(cat_data)
+        loss = criterion(out, cat_data)
+        
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+
+        print(f'Epoch [{epoch+1}], Loss: {loss.item():.4f}')
+
+
+
+
+
 
 def train(model):
+    # read in data
     data_dir = os.path.join("processed_data", "breast_g1")
-    gene_data = torch.load(os.path.join(data_dir,'gene_encode.pth'))
+    gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
     spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
     img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
     gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
     data_dir = os.path.join("processed_data", "breast_g1")
     ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
-    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device) # [N, 1024]
+    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
 
     optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
     criterion = F.kl_div
@@ -87,9 +122,6 @@ def train(model):
 
         q = soft_cluster(z, cent, config["alpha"])
         p = target_distribution(q)
-
-        # print(q[0])
-        # print(p[0])
 
         loss = criterion(q.log(), p, reduction='batchmean')
         loss.backward()
