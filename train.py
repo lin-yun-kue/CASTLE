@@ -101,16 +101,17 @@ def main():
         batch_size = config['batch_size'],
         optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
         scheduler=lambda x: StepLR(x, 100, gamma=0.1),
-        corruption=0.2
+        corruption=0.2,
+        silent = True
     )
     print("training stage-----")
     ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.1, momentum=0.9)
     ae.train(
         train_dataset,
         autoencoder,
-        cuda=False,
+        cuda=cuda,
         validation=None,
-        epochs= config['finetune_epochs'],
+        epochs= config['finetune_epoch'],
         batch_size=config['batch_size'],
         optimizer=ae_optimizer,
         scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
