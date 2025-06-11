@@ -81,6 +81,8 @@ class CellDataset(Dataset):
 
     def __getitem__(self, idx):
         cat = torch.cat((self.gene[idx, :], self.coord[idx, :], self.img[idx, :]), dim=0)
+        if cat.requires_grad:
+            cat = cat.detach()
         return cat, self.true[idx]
 
 
