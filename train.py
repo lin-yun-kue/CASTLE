@@ -30,13 +30,14 @@ from ptdec.model import train, predict
 
 torch.cuda.manual_seed(42)   
 
+cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
     "pretrain_epoch": 400,
     "finetune_epoch": 100,
     "dec_epoch": 500,
-    "dims": [1024, 500, 500, 2000, 50],
+    "dims": [1024, 500, 500, 2000, 10],
     "batch_size": 128,
 }
 
@@ -88,12 +89,13 @@ def main():
     autoencoder = StackedDenoisingAutoEncoder(
         config["dims"], final_activation = None
     )
+    autoencoder.to(device)
     print(autoencoder)
     print("pretraining stage-----")
     ae.pretrain(
         train_dataset,
         autoencoder,
-        cuda = False,
+        cuda = cuda,
         validation = None,
         epochs = config['pretrain_epoch'],
         batch_size = config['batch_size'],
@@ -116,7 +118,7 @@ def main():
     )
     with torch.no_grad():
         z = autoencoder.encoder(cat_data)
-    # visualize_2d(z, ground_truth)
+    visualize_2d(z, ground_truth)
     _, pred = get_centre_pred(z)
     eval_accuracy(pred, ground_truth)
 
