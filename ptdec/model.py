@@ -122,11 +122,13 @@ def train(
             output = model(batch)
             target = target_distribution(output).detach()
             loss = loss_function(output.log(), target) / output.shape[0]
+            entropy = -torch.sum(output.log() * torch.log(output.log() + 1e-6), dim=1).mean()
             data_iterator.set_postfix(
                 epo=epoch,
                 acc="%.4f" % (accuracy or 0.0),
                 lss="%.8f" % float(loss.item()),
                 dlb="%.4f" % (delta_label or 0.0),
+                entropy = "%.4f" % float(entropy.item()),
             )
             optimizer.zero_grad()
             loss.backward()

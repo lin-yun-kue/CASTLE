@@ -106,11 +106,11 @@ def main():
         scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
         corruption=0.2
     )
-    # with torch.no_grad():
-    #     z = autoencoder.encoder(cat_data)
-    # visualize_2d(z, ground_truth)
-    # _, pred = get_centre_pred(z, reduce_dim='umap')
-    # eval_accuracy(pred, ground_truth)
+    with torch.no_grad():
+        z = autoencoder.encoder(cat_data)
+    visualize_2d(z, ground_truth)
+    _, pred = get_centre_pred(z, reduce_dim='umap')
+    eval_accuracy(pred, ground_truth)
 
     print("DEC stage-----")
     model = DEC(cluster_number=config['n_cluster'], hidden_dimension=10, encoder = autoencoder.encoder)
@@ -125,7 +125,11 @@ def main():
         cuda=False
     )
     pred, true = predict(train_dataset, model, 1024, silent = True, return_actual=True, cuda = False)
+    with torch.no_grad():
+        z = model.encoder(cat_data)
+    visualize_2d(z, ground_truth)
     eval_accuracy(pred, true)
+
 
     # train self written version of autoencoder
     # model = ClustAutoEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None, final_decoder_activation = None)
