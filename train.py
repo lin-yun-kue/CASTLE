@@ -37,7 +37,7 @@ config = {
     "pretrain_epoch": 400,
     "finetune_epoch": 100,
     "dec_epoch": 500,
-    "dims": [1024, 500, 500, 2000, 10],
+    "dims": [1024, 500, 500, 2000, 50],
     "batch_size": 128,
 }
 
