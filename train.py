@@ -113,7 +113,7 @@ def main():
     # eval_accuracy(pred, ground_truth)
 
     print("DEC stage-----")
-    model = DEC(cluster_number=config['n_cluster'], hidden_dimension=20, encoder = autoencoder.encoder)
+    model = DEC(cluster_number=config['n_cluster'], hidden_dimension=10, encoder = autoencoder.encoder)
     dec_optimizer = SGD(params=model.parameters(), lr=0.01, momentum=0.9)
     train(
         dataset= train_dataset,
