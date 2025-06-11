@@ -32,29 +32,36 @@ torch.cuda.manual_seed(42)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-
 config = {
-    "data_percentage": 0.1,       #
-    "lr": 0.1,               # learning rate
-    "weight_decay": 0.0000001,  # weight decay
-    "max_epoch": 100,
-    "dims": [1024, 512, 128, 32, 16],
-    "n_cluster": 19,
-    "alpha": 1,
-    "plot": True # can be used to silence all plots
+    "pretrain_epoch": 400,
+    "finetune_epoch": 100,
+    "dec_epoch": 500,
+    "dims": [1024, 500, 500, 2000, 50],
+    "batch_size": 128,
 }
 
-auto_encode_config = {
-    "lr": 0.001,               # learning rate
-    "weight_decay": 0.0000001,  # weight decay
-    "max_epoch": 3000,
-}
-
-sdae_config = {
-    "epoches" : 400
-    ,"batch_size" : 128
-    ,"finetune_epochs": 100
-}
+# config = {
+#     "data_percentage": 0.1,       #
+#     "lr": 0.1,               # learning rate
+#     "weight_decay": 0.0000001,  # weight decay
+#     "max_epoch": 100,
+#     "dims": [1024, 512, 128, 32, 16],
+#     "n_cluster": 19,
+#     "alpha": 1,
+#     "plot": True # can be used to silence all plots
+# }
+#
+# auto_encode_config = {
+#     "lr": 0.001,               # learning rate
+#     "weight_decay": 0.0000001,  # weight decay
+#     "max_epoch": 3000,
+# }
+#
+# sdae_config = {
+#     "epoches" : 400
+#     ,"batch_size" : 128
+#     ,"finetune_epochs": 100
+# }
 
 ## data
 data_dir = os.path.join("processed_data", "breast_g1")
@@ -79,16 +86,17 @@ def main():
 
     train_dataset = CellDataset()
     autoencoder = StackedDenoisingAutoEncoder(
-        [1024, 500, 500, 2000, 10], final_activation = None
+        config["dims"], final_activation = None
     )
+    print(autoencoder)
     print("pretraining stage-----")
     ae.pretrain(
         train_dataset,
         autoencoder,
         cuda = False,
         validation = None,
-        epochs = sdae_config['epoches'],
-        batch_size = sdae_config['batch_size'],
+        epochs = config['pretrain_epoch'],
+        batch_size = config['batch_size'],
         optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
         scheduler=lambda x: StepLR(x, 100, gamma=0.1),
         corruption=0.2
@@ -100,35 +108,35 @@ def main():
         autoencoder,
         cuda=False,
         validation=None,
-        epochs= sdae_config['finetune_epochs'],
-        batch_size=sdae_config['batch_size'],
+        epochs= config['finetune_epochs'],
+        batch_size=config['batch_size'],
         optimizer=ae_optimizer,
         scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
         corruption=0.2
     )
     with torch.no_grad():
         z = autoencoder.encoder(cat_data)
-    visualize_2d(z, ground_truth)
-    _, pred = get_centre_pred(z, reduce_dim='umap')
+    # visualize_2d(z, ground_truth)
+    _, pred = get_centre_pred(z)
     eval_accuracy(pred, ground_truth)
 
-    print("DEC stage-----")
-    model = DEC(cluster_number=config['n_cluster'], hidden_dimension=10, encoder = autoencoder.encoder)
-    dec_optimizer = SGD(params=model.parameters(), lr=0.01, momentum=0.9)
-    train(
-        dataset= train_dataset,
-        model=model,
-        epochs=config['max_epoch'],
-        batch_size=sdae_config['batch_size'],
-        optimizer=dec_optimizer,
-        stopping_delta=0.000001,
-        cuda=False
-    )
-    pred, true = predict(train_dataset, model, 1024, silent = True, return_actual=True, cuda = False)
-    with torch.no_grad():
-        z = model.encoder(cat_data)
-    visualize_2d(z, ground_truth)
-    eval_accuracy(pred, true)
+    # print("DEC stage-----")
+    # model = DEC(cluster_number=config['n_cluster'], hidden_dimension=config["dims"][-1], encoder = autoencoder.encoder)
+    # dec_optimizer = SGD(params=model.parameters(), lr=0.01, momentum=0.9)
+    # train(
+    #     dataset= train_dataset,
+    #     model=model,
+    #     epochs=config['dec_epoch'],
+    #     batch_size=config['batch_size'],
+    #     optimizer=dec_optimizer,
+    #     stopping_delta=0.000001,
+    #     cuda=False
+    # )
+    # pred, true = predict(train_dataset, model, 1024, silent = True, return_actual=True, cuda = False)
+    # with torch.no_grad():
+    #     z = model.encoder(cat_data)
+    # visualize_2d(z, ground_truth)
+    # eval_accuracy(pred, true)
 
 
     # train self written version of autoencoder
