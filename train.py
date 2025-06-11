@@ -34,11 +34,13 @@ cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
-    "pretrain_epoch": 400,
-    "finetune_epoch": 100,
-    "dec_epoch": 500,
+    "pretrain_epoch": 300,
+    "finetune_epoch": 200,
+    "dec_epoch": 1000,
     "dims": [1024, 500, 500, 2000, 50],
     "batch_size": 128,
+    "corrupt": 0.3,
+    "n_cluster": 19,
 }
 
 # config = {
@@ -102,7 +104,7 @@ def main():
         optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
         scheduler=lambda x: StepLR(x, 100, gamma=0.1),
         corruption=0.2,
-        silent = True
+        silent = False
     )
     print("training stage-----")
     ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.1, momentum=0.9)
@@ -115,7 +117,7 @@ def main():
         batch_size=config['batch_size'],
         optimizer=ae_optimizer,
         scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
-        corruption=0.2
+        corruption=config["corrupt"]
     )
     with torch.no_grad():
         z = autoencoder.encoder(cat_data)

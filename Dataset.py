@@ -65,8 +65,8 @@ for batch in train_loader:
 
 class CellDataset(Dataset):
     def __init__(self, data_dir="processed_data", samples="breast_g1",
-                 ge_files="gene_encode.pth", cell_images="img_encode.pth",
-                 coords="coord_encode.pth", ground_truth = "ground_truth.pth"):
+                 ge_files="gene_encode_big.pth", cell_images="img_encode_big.pth",
+                 coords="coord_encode_big.pth", ground_truth = "ground_truth_big.pth"):
         self.gene = torch.load(os.path.join(data_dir, samples, ge_files))
         self.coord = torch.load(os.path.join(data_dir, samples, coords))
         self.img = torch.load(os.path.join(data_dir, samples, cell_images))
