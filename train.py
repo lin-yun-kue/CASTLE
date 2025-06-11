@@ -102,7 +102,7 @@ def main():
         optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
         scheduler=lambda x: StepLR(x, 100, gamma=0.1),
         corruption=0.2,
-        silent = True
+        silent = False
     )
     print("training stage-----")
     ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.1, momentum=0.9)

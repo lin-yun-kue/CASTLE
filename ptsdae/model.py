@@ -195,6 +195,7 @@ def pretrain(
     current_validation = validation
     number_of_subautoencoders = len(autoencoder.dimensions) - 1
     for index in range(number_of_subautoencoders):
+        print("Training subautoencoder %d/%d" % (index + 1, number_of_subautoencoders))
         encoder, decoder = autoencoder.get_stack(index)
         embedding_dimension = autoencoder.dimensions[index]
         hidden_dimension = autoencoder.dimensions[index + 1]
