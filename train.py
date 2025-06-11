@@ -34,12 +34,12 @@ cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
-    "pretrain_epoch": 100,
+    "pretrain_epoch": 400,
     "finetune_epoch": 300,
     "dec_epoch": 1000,
     "dims": [1024, 500, 500, 2000, 10],
     "batch_size": 128,
-    "corrupt": 0.3,
+    "corrupt": 0.2,
     "n_cluster": 19,
     "alpha": 1,
     "plot": False # can be used to silence all plots
