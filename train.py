@@ -93,6 +93,7 @@ def main():
     )
     autoencoder.to(device)
     print(autoencoder)
+    print("model is launched on device:", device)
     print("pretraining stage-----")
     ae.pretrain(
         train_dataset,
@@ -103,8 +104,9 @@ def main():
         batch_size = config['batch_size'],
         optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
         scheduler=lambda x: StepLR(x, 100, gamma=0.1),
-        corruption=0.2,
-        silent = False
+        corruption=config['corrupt'],
+        silent = False,
+        num_workers=4
     )
     print("training stage-----")
     ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.1, momentum=0.9)
@@ -117,7 +119,8 @@ def main():
         batch_size=config['batch_size'],
         optimizer=ae_optimizer,
         scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
-        corruption=config["corrupt"]
+        corruption=config["corrupt"],
+        num_workers=4
     )
     with torch.no_grad():
         z = autoencoder.encoder(cat_data)
