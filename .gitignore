@@ -7,3 +7,5 @@ processed_data/breast_g1/ground_truth_big.pth
 processed_data/breast_g1/img_encode_big.pth
 processed_data/breast_g1/raw_coords_big.pth
 processed_data/breast_g1/raw_expression_big.pth
+pt-sdae/
+pt-dec/

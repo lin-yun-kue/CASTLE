@@ -3,6 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import importlib
+
+from sympy import false
+
 import ClustEncoderM
 importlib.reload(ClustEncoderM)
 from ClustEncoderM import ClustAutoEncoder
@@ -17,6 +20,13 @@ from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDis
 import os
 from sklearn.decomposition import PCA
 import umap
+import ptsdae.model as ae
+from ptsdae.sdae import StackedDenoisingAutoEncoder
+from Dataset import CellDataset
+from torch.optim import SGD
+from torch.optim.lr_scheduler import StepLR
+from ptdec.dec import DEC
+from ptdec.model import train, predict
 
 torch.cuda.manual_seed(42)   
 
@@ -28,10 +38,10 @@ config = {
     "lr": 0.1,               # learning rate
     "weight_decay": 0.0000001,  # weight decay
     "max_epoch": 100,
-    "dims": [1024, 64, 16],
+    "dims": [1024, 512, 128, 32, 16],
     "n_cluster": 19,
     "alpha": 1,
-    "plot": False # can be used to silence all plots
+    "plot": True # can be used to silence all plots
 }
 
 auto_encode_config = {
@@ -40,26 +50,108 @@ auto_encode_config = {
     "max_epoch": 3000,
 }
 
+sdae_config = {
+    "epoches" : 400
+    ,"batch_size" : 128
+    ,"finetune_epochs": 100
+}
+
+## data
+data_dir = os.path.join("processed_data", "breast_g1")
+gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
+spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
+img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
+gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
+ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
+cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
+
 
 def main():
-    model = ClustAutoEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None)
-    print(model)
-    # model = torch.compile(model)
-    model = model.to(device)
+    # test accuracy of various input
+    # _, pred = get_centre_pred(cat_data, reduce_dim="umap", n_components=50)
+    # eval_accuracy(pred, ground_truth)
+    # _, pred = get_centre_pred(gene_data, reduce_dim="umap")
+    # eval_accuracy(pred, ground_truth)
+    # _, pred = get_centre_pred(img_data, reduce_dim="umap")
+    # eval_accuracy(pred, ground_truth)
+    # _, pred = get_centre_pred(spatial_data, reduce_dim="umap")
+    # eval_accuracy(pred, ground_truth)
 
-    train_auto_encoder(model)
+    train_dataset = CellDataset()
+    autoencoder = StackedDenoisingAutoEncoder(
+        [1024, 500, 500, 2000, 10], final_activation = None
+    )
+    print("pretraining stage-----")
+    ae.pretrain(
+        train_dataset,
+        autoencoder,
+        cuda = False,
+        validation = None,
+        epochs = sdae_config['epoches'],
+        batch_size = sdae_config['batch_size'],
+        optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
+        scheduler=lambda x: StepLR(x, 100, gamma=0.1),
+        corruption=0.2
+    )
+    print("training stage-----")
+    ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.1, momentum=0.9)
+    ae.train(
+        train_dataset,
+        autoencoder,
+        cuda=False,
+        validation=None,
+        epochs= sdae_config['finetune_epochs'],
+        batch_size=sdae_config['batch_size'],
+        optimizer=ae_optimizer,
+        scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
+        corruption=0.2
+    )
+    # with torch.no_grad():
+    #     z = autoencoder.encoder(cat_data)
+    # visualize_2d(z, ground_truth)
+    # _, pred = get_centre_pred(z, reduce_dim='umap')
+    # eval_accuracy(pred, ground_truth)
 
-    pred_m = train(model.encoder)
+    print("DEC stage-----")
+    model = DEC(cluster_number=config['n_cluster'], hidden_dimension=20, encoder = autoencoder.encoder)
+    dec_optimizer = SGD(params=model.parameters(), lr=0.01, momentum=0.9)
+    train(
+        dataset= train_dataset,
+        model=model,
+        epochs=config['max_epoch'],
+        batch_size=sdae_config['batch_size'],
+        optimizer=dec_optimizer,
+        stopping_delta=0.000001,
+        cuda=False
+    )
+    pred, true = predict(train_dataset, model, 1024, silent = True, return_actual=True, cuda = False)
+    eval_accuracy(pred, true)
 
-    
-    eval_accuracy(pred_m)
+    # train self written version of autoencoder
+    # model = ClustAutoEncoder(config["dims"], activation=nn.GELU(), final_encoder_activation=None, final_decoder_activation = None)
+    # print(model)
+    # model = model.to(device)
+    #
+    # train_auto_encoder(model)
+    #
+    # with torch.no_grad():
+    #     z = model.encoder(cat_data)
+    #
+    # visualize_2d(z, ground_truth)
+    # _, pred = get_centre_pred(z, reduce_dim='umap')
+    # eval_accuracy(pred, ground_truth)
+    #
+    # pred_m = train(model.encoder)
+
+
+    # eval_accuracy(pred_m)
     # eval_accuracy(pred_c)
     # eval_accuracy(pred_g)
     # eval_accuracy(pred_r)
 
 def plot_class_graph(pred):
     unique, counts = np.unique(pred, return_counts=True)
-    
+
     plt.bar(unique, counts)
     plt.xlabel('Class')
     plt.ylabel('Count')
@@ -67,15 +159,6 @@ def plot_class_graph(pred):
     plt.show()
 
 def train_auto_encoder(model):
-    # read in data
-    data_dir = os.path.join("processed_data", "breast_g1")
-    gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
-    spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
-    img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
-    # gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
-    # ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
-    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
-
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=auto_encode_config["lr"], weight_decay=auto_encode_config["weight_decay"])
 
@@ -89,26 +172,12 @@ def train_auto_encoder(model):
         optimizer.zero_grad()
 
         print(f'Epoch [{epoch+1}], Loss: {loss.item():.4f}')
-    
+
     torch.save(model.state_dict(), './chkpts/auto_model.pth')
     
 
 
-def train(model):
-    # read in data
-    data_dir = os.path.join("processed_data", "breast_g1")
-    gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
-    spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
-    img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
-    gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
-    data_dir = os.path.join("processed_data", "breast_g1")
-    ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
-    cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
-
-    # tempZ = model(cat_data)
-    # tempZ = tempZ.cpu().detach().numpy()
-    # get_centre_pred(tempZ, ground_truth)
-    # return
+def train_dec(model):
     optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
     criterion = F.kl_div
 
@@ -120,8 +189,11 @@ def train(model):
         z = model(cat_data) # [N, d]
 
         z_cpu = z.cpu().detach().numpy()
-        cent, _ = get_centre_pred(z_cpu, ground_truth)
+        cent, _ = get_centre_pred(z_cpu)
 
+        # only visualize every 10 epoch
+        if epoch % 10 == 0:
+            visualize_2d(z, ground_truth)
 
         q = soft_cluster(z, cent, config["alpha"])
         p = target_distribution(q)
@@ -158,8 +230,25 @@ def train(model):
     return pred_m
     # return pred_m, pred_c, pred_g, gene_r
 
+def visualize_2d(z, ground_truth, reduce_dim = "umap"):
+    if not isinstance(z, np.ndarray):
+        z = z.detach().cpu().numpy()
+    if not isinstance(ground_truth, np.ndarray):
+        ground_truth = ground_truth.detach().cpu().numpy()
+    vis_reducer = PCA(n_components=2) if reduce_dim != "umap" else umap.UMAP(n_components=2)
+    z_2d = vis_reducer.fit_transform(z)
+    plt.figure()
+    plt.scatter(z_2d[:, 0], z_2d[:, 1], c=ground_truth, cmap="tab10", s=5, alpha=0.6)
+    plt.title(f"2D View after with Cluster Coloring")
+    plt.xlabel("Component 1")
+    plt.ylabel("Component 2")
+    plt.colorbar(label="Cluster")
+    plt.show()
 
-def get_centre_pred(z, ground_truth, reduce_dim = None, n_components = 10):
+def get_centre_pred(z, reduce_dim = None, n_components = 10):
+    if not isinstance(z, np.ndarray):
+        z = z.detach().cpu().numpy()
+
     if reduce_dim == "pca":
         pca = PCA(n_components=n_components, random_state=42)
         z = pca.fit_transform(z)
@@ -169,22 +258,11 @@ def get_centre_pred(z, ground_truth, reduce_dim = None, n_components = 10):
     else:
         print("Dimension not reduced")
 
-    ground_truth = ground_truth.cpu().detach().numpy()
     kmeans = KMeans(config["n_cluster"], n_init=30, random_state=42)
 
     pred = kmeans.fit_predict(z)
 
     centroid = torch.tensor(kmeans.cluster_centers_, dtype=torch.float32, requires_grad=False, device=device)
-    if config['plot'] and n_components > 2:
-        vis_reducer = PCA(n_components=2) if reduce_dim != "umap" else umap.UMAP(n_components=2)
-        z_2d = vis_reducer.fit_transform(z)
-        plt.figure()
-        plt.scatter(z_2d[:, 0], z_2d[:, 1], c=ground_truth, cmap="tab10", s=5, alpha=0.6)
-        plt.title(f"2D View after with Cluster Coloring")
-        plt.xlabel("Component 1")
-        plt.ylabel("Component 2")
-        plt.colorbar(label="Cluster")
-        plt.show()
 
     return centroid, pred
     
@@ -246,10 +324,9 @@ def plot_graph(loss_his):
     plt.tight_layout()
     plt.show()
 
-def eval_accuracy(pred):
-    data_dir = os.path.join("processed_data", "breast_g1")
-    ground_truth = torch.load(os.path.join(data_dir,'ground_truth.pth'))
-    ground_truth = ground_truth.cpu().detach().numpy()
+def eval_accuracy(pred, ground_truth):
+    if not isinstance(ground_truth, np.ndarray):
+        ground_truth = ground_truth.detach().cpu().numpy()
     y_true = np.asarray(ground_truth) - 1
     y_pred = np.asarray(pred)
     df = pd.DataFrame({"true": y_true, "pred": y_pred})
