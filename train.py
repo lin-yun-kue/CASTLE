@@ -34,13 +34,15 @@ cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
-    "pretrain_epoch": 300,
-    "finetune_epoch": 200,
+    "pretrain_epoch": 100,
+    "finetune_epoch": 300,
     "dec_epoch": 1000,
     "dims": [1024, 500, 500, 2000, 50],
     "batch_size": 128,
     "corrupt": 0.3,
     "n_cluster": 19,
+    "alpha": 1,
+    "plot": False # can be used to silence all plots
 }
 
 # config = {
@@ -109,7 +111,7 @@ def main():
         num_workers=4
     )
     print("training stage-----")
-    ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.1, momentum=0.9)
+    ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.01, momentum=0.9)
     ae.train(
         train_dataset,
         autoencoder,
