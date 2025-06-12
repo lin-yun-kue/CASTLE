@@ -39,6 +39,7 @@ class ClusterEncoder(nn.Module):
         layers=[]
         for idx in range(len(dims)-1):
             layers.append(nn.Linear(dims[idx], dims[idx + 1]))
+            layers.append(nn.LayerNorm(dims[idx + 1]))
             if activation is not None:
                 layers.append(activation)
             if dropout is not None:
@@ -73,6 +74,7 @@ class ClusterDecoder(nn.Module):
         layers=[]
         for idx in range(len(dims)-1):
             layers.append(nn.Linear(dims[idx], dims[idx + 1]))
+            layers.append(nn.LayerNorm(dims[idx + 1]))
             if activation is not None:
                 layers.append(activation)
             if dropout is not None:

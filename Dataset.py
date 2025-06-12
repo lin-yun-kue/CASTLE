@@ -62,4 +62,34 @@ for batch in train_loader:
     print("Images shape:", images.shape)         # Expected: [1, N_cells, 3, 32, 32]
     print("Expression shape:", expression.shape) # Expected: [1, N_cells, g]
     print("Coord shape:", coord.shape)           # Expected: [1, N_cells, 2]
+
+class CellDataset(Dataset):
+    def __init__(self, data_dir="processed_data", samples="breast_g1",
+                 ge_files="gene_encode_big.pth", cell_images="img_encode_big.pth",
+                 coords="coord_encode_big.pth", ground_truth = "ground_truth_big.pth"):
+        self.gene = torch.load(os.path.join(data_dir, samples, ge_files))
+        self.coord = torch.load(os.path.join(data_dir, samples, coords))
+        self.img = torch.load(os.path.join(data_dir, samples, cell_images))
+        self.true = torch.load(os.path.join(data_dir, samples, ground_truth))
+        self.len = self.coord.shape[0]
+
+    def __len__(self):
+        '''
+        :return: [1] integer for number of tissue samples in dataset
+        '''
+        return self.len
+
+    def __getitem__(self, idx):
+        cat = torch.cat((self.gene[idx, :], self.coord[idx, :], self.img[idx, :]), dim=0)
+        if cat.requires_grad:
+            cat = cat.detach()
+        return cat, self.true[idx]
+
+
+train_dataset = CellDataset()
+train_loader = DataLoader(train_dataset, batch_size=512, shuffle=True, pin_memory=True)
+for batch in train_loader:
+    x, y = batch
+    print("Concatenated Features shape:", x.shape)
+    print("Truth shape:", y.shape)
     break

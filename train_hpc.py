@@ -54,10 +54,10 @@ def main():
     wandb.log({"viz/concat cm": wandb.Image(fig_c)})
     wandb.log({"viz/geneformer cm": wandb.Image(fig_g)})
     wandb.log({"viz/raw cm": wandb.Image(fig_r)})
-    wandb.log({"model acc": wandb.Image(acc_m)})
-    wandb.log({"concat acc": wandb.Image(acc_c)})
-    wandb.log({"geneformer acc": wandb.Image(acc_g)})
-    wandb.log({"raw acc": wandb.Image(acc_r)})
+    wandb.log({"model acc": acc_m})
+    wandb.log({"concat acc": acc_c})
+    wandb.log({"geneformer acc": acc_g})
+    wandb.log({"raw acc": acc_r})
 
 def train(model):
     wandb.login()
