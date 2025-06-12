@@ -168,6 +168,7 @@ def main():
         stopping_delta=config["stopping_delta"],
         cuda=cuda,
         logger = logger,
+        num_workers=config['num_workers'],
     )
     pred, true = predict(train_dataset, model, config["batch_size"], silent = True, return_actual=True, cuda = cuda)
     with torch.no_grad():

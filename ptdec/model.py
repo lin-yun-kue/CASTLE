@@ -26,6 +26,7 @@ def train(
     epoch_callback: Optional[Callable[[int, torch.nn.Module], None]] = None,
     scheduler: Optional[any] = None,
     logger: Optional[any] = None,
+    num_workers: Optional[int] = 0,
 ) -> None:
     """
     Train the DEC model given a dataset, a model instance and various configuration parameters.
@@ -53,6 +54,7 @@ def train(
         pin_memory=False,
         sampler=sampler,
         shuffle=False,
+        num_workers=num_workers,
     )
     train_dataloader = DataLoader(
         dataset,
@@ -60,6 +62,7 @@ def train(
         collate_fn=collate_fn,
         sampler=sampler,
         shuffle=True,
+        num_workers=num_workers,
     )
     kmeans = KMeans(n_clusters=model.cluster_number, n_init=20)
     model.train()
@@ -84,7 +87,7 @@ def train(
         cluster_centers = cluster_centers.cuda(non_blocking=True)
     with torch.no_grad():
         # initialise the cluster centers
-        model.state_dict()["assignment.cluster_centers"].copy_(cluster_centers)
+        model.assignment.cluster_centers.data.copy_(cluster_centers.to(model.assignment.cluster_centers.device))
     loss_function = nn.KLDivLoss(size_average=False)
     delta_label = None
     progress = tqdm(total=epochs, desc="DEC Training", leave=True)
