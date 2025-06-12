@@ -1,0 +1,38 @@
+StackedDenoisingAutoEncoder(
+  (encoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=313, out_features=228, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=228, out_features=114, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=114, out_features=20, bias=True)
+    )
+  )
+  (decoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=20, out_features=114, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=114, out_features=228, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=228, out_features=313, bias=True)
+    )
+  )
+)
+model is launched on device: cpu
+pretraining stage-----
+Pretraining Progress: 100%|██████████| 3000/3000 [01:02<00:00, 48.02it/s, avg_loss=0.176] 
+training stage-----
+Training Progress: 100%|██████████| 500/500 [00:23<00:00, 21.11it/s, avg_loss=2.32]
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/deprecation.py:151: FutureWarning: 'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8.
+  warnings.warn(
+Dimension not reduced
+Accuracy: 0.618112870845416
+Score: 0.03604435646796928

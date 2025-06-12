@@ -1,0 +1,76 @@
+StackedDenoisingAutoEncoder(
+  (encoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=313, out_features=100, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=100, out_features=50, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=50, out_features=10, bias=True)
+    )
+  )
+  (decoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=10, out_features=50, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=50, out_features=100, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=100, out_features=313, bias=True)
+    )
+  )
+)
+model is launched on device: cpu
+pretraining stage-----
+Pretraining Progress: 100%|██████████| 1500/1500 [00:38<00:00, 38.88it/s, avg_loss=0.00981]
+training stage-----
+Training Progress: 100%|██████████| 100/100 [00:04<00:00, 20.44it/s, avg_loss=nan]
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/deprecation.py:151: FutureWarning: 'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/train_grace.py", line 416, in <module>
+    main()
+    ~~~~^^
+  File "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/train_grace.py", line 154, in main
+    visualize_2d(z, ground_truth)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/train_grace.py", line 287, in visualize_2d
+    z_2d = vis_reducer.fit_transform(z)
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/umap/umap_.py", line 2928, in fit_transform
+    self.fit(X, y, force_all_finite, **kwargs)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/umap/umap_.py", line 2372, in fit
+    X = check_array(
+        X,
+    ...<3 lines>...
+        force_all_finite=force_all_finite,
+    )
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/validation.py", line 1107, in check_array
+    _assert_all_finite(
+    ~~~~~~~~~~~~~~~~~~^
+        array,
+        ^^^^^^
+    ...<2 lines>...
+        allow_nan=ensure_all_finite == "allow-nan",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/validation.py", line 120, in _assert_all_finite
+    _assert_all_finite_element_wise(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        X,
+        ^^
+    ...<4 lines>...
+        input_name=input_name,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/validation.py", line 169, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input contains NaN.

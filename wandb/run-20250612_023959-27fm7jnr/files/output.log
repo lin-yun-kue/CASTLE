@@ -1,0 +1,80 @@
+StackedDenoisingAutoEncoder(
+  (encoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=313, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=70, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=70, out_features=500, bias=True)
+      (activation): ReLU()
+    )
+    (3): Sequential(
+      (linear): Linear(in_features=500, out_features=10, bias=True)
+    )
+  )
+  (decoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=10, out_features=500, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=500, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=70, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (3): Sequential(
+      (linear): Linear(in_features=70, out_features=313, bias=True)
+    )
+  )
+)
+model is launched on device: cpu
+pretraining stage-----
+Pretraining Progress: 100%|██████████| 4000/4000 [01:50<00:00, 36.31it/s, avg_loss=0.00213]
+training stage-----
+Training Progress: 100%|██████████| 300/300 [00:21<00:00, 13.70it/s, avg_loss=0.289]
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/deprecation.py:151: FutureWarning: 'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8.
+  warnings.warn(
+Dimension not reduced
+Accuracy: 0.6709792549631943
+Score: 0.05321282720149235
+DEC stage-----
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/torch/nn/_reduction.py:51: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+DEC Training:   0%|          | 1/6000 [00:00<11:34,  8.64it/s, avg_entropy=2.04, avg_loss=0.263, delta_label=0.202]Traceback (most recent call last):
+  File "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/train_grace.py", line 417, in <module>
+    main()
+    ~~~~^^
+  File "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/train_grace.py", line 161, in main
+    train(
+    ~~~~~^
+        dataset= train_dataset,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        logger = logger,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/ptdec/model.py", line 151, in train
+    logger.log("DEC/Entropy", avg_entropy.item())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 503, in wrapper
+    return func(self, *args, **kwargs)
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 451, in wrapper
+    return func(self, *args, **kwargs)
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 2071, in log
+    self._log(data=data, step=step, commit=commit)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/castle/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 1778, in _log
+    raise ValueError("wandb.log must be passed a dictionary")
+ValueError: wandb.log must be passed a dictionary

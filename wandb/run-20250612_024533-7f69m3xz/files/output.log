@@ -1,0 +1,57 @@
+StackedDenoisingAutoEncoder(
+  (encoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=313, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=70, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=70, out_features=500, bias=True)
+      (activation): ReLU()
+    )
+    (3): Sequential(
+      (linear): Linear(in_features=500, out_features=10, bias=True)
+    )
+  )
+  (decoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=10, out_features=500, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=500, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=70, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (3): Sequential(
+      (linear): Linear(in_features=70, out_features=313, bias=True)
+    )
+  )
+)
+model is launched on device: cpu
+pretraining stage-----
+Pretraining Progress: 100%|██████████| 4000/4000 [01:48<00:00, 36.91it/s, avg_loss=0.00213]
+training stage-----
+Training Progress: 100%|██████████| 300/300 [00:21<00:00, 13.72it/s, avg_loss=0.289]
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/deprecation.py:151: FutureWarning: 'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8.
+  warnings.warn(
+Dimension not reduced
+Accuracy: 0.6796787865268793
+Score: 0.04221629296040814
+DEC stage-----
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/torch/nn/_reduction.py:51: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+DEC Training:   6%|▌         | 368/6000 [00:37<09:31,  9.86it/s, avg_entropy=0.506, avg_loss=0.0788, delta_label=0.00178] 
+Early stopping as label delta "0.00000000" less than "0.00000010".
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/utils/deprecation.py:151: FutureWarning: 'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8.
+  warnings.warn(
+/opt/anaconda3/envs/castle/lib/python3.13/site-packages/sklearn/manifold/_spectral_embedding.py:329: UserWarning: Graph is not fully connected, spectral embedding may not work as expected.
+  warnings.warn(
+Accuracy: 0.662725853223288
+Score: 0.06288375653331463

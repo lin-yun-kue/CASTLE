@@ -1,0 +1,15 @@
+{"time":"2025-06-12T01:19:24.030785-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_011924-xpkqlraf/logs/debug-core.log"}
+{"time":"2025-06-12T01:19:24.286671-07:00","level":"INFO","msg":"created new stream","id":"xpkqlraf"}
+{"time":"2025-06-12T01:19:24.286723-07:00","level":"INFO","msg":"stream: started","id":"xpkqlraf"}
+{"time":"2025-06-12T01:19:24.286742-07:00","level":"INFO","msg":"handler: started","stream_id":"xpkqlraf"}
+{"time":"2025-06-12T01:19:24.286794-07:00","level":"INFO","msg":"sender: started","stream_id":"xpkqlraf"}
+{"time":"2025-06-12T01:19:24.288782-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"xpkqlraf"}
+{"time":"2025-06-12T01:19:24.434203-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-12T01:20:30.703887-07:00","level":"INFO","msg":"stream: closing","id":"xpkqlraf"}
+{"time":"2025-06-12T01:20:30.704667-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-12T01:20:30.704706-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-12T01:20:31.190858-07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-12T01:20:31.389325-07:00","level":"INFO","msg":"sender: closed","stream_id":"xpkqlraf"}
+{"time":"2025-06-12T01:20:31.389571-07:00","level":"INFO","msg":"handler: closed","stream_id":"xpkqlraf"}
+{"time":"2025-06-12T01:20:31.389576-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"xpkqlraf"}
+{"time":"2025-06-12T01:20:31.389907-07:00","level":"INFO","msg":"stream: closed","id":"xpkqlraf"}

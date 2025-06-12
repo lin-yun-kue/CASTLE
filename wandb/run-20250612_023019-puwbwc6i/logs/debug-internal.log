@@ -1,0 +1,7 @@
+{"time":"2025-06-12T02:30:19.378793-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_023019-puwbwc6i/logs/debug-core.log"}
+{"time":"2025-06-12T02:30:19.648671-07:00","level":"INFO","msg":"created new stream","id":"puwbwc6i"}
+{"time":"2025-06-12T02:30:19.648715-07:00","level":"INFO","msg":"stream: started","id":"puwbwc6i"}
+{"time":"2025-06-12T02:30:19.648735-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"puwbwc6i"}
+{"time":"2025-06-12T02:30:19.648774-07:00","level":"INFO","msg":"sender: started","stream_id":"puwbwc6i"}
+{"time":"2025-06-12T02:30:19.648796-07:00","level":"INFO","msg":"handler: started","stream_id":"puwbwc6i"}
+{"time":"2025-06-12T02:30:19.822272-07:00","level":"INFO","msg":"Starting system monitor"}

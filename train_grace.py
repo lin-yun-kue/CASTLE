@@ -13,17 +13,29 @@ import matplotlib.pyplot as plt
 from torch.nn.parameter import Parameter
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay, silhouette_score
 import os
 from sklearn.decomposition import PCA
 import umap
+import ptsdae.model
+importlib.reload(ptsdae.model)
 import ptsdae.model as ae
 from ptsdae.sdae import StackedDenoisingAutoEncoder
-from Dataset import CellDataset
+from Dataset import CellDataset, CellRawExpDataset, CellGeneformerDataset
 from torch.optim import SGD
 from torch.optim.lr_scheduler import StepLR
 from ptdec.dec import DEC
 from ptdec.model import train, predict
+import networkx as nx
+from sklearn.neighbors import kneighbors_graph
+import community.community_louvain as community_louvain
+from collections import defaultdict
+# import os
+# os.environ["WANDB_MODE"] = "disabled"
+import wandb
+import random
+import datetime
+import string
 
 torch.cuda.manual_seed(42)   
 
@@ -31,62 +43,69 @@ cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
-    "pretrain_epoch": 300,
-    "finetune_epoch": 50,
-    "dec_epoch": 1000,
-    "dims": [1024, 500, 500, 2000, 10],
+    "pretrain_epoch": 1000,
+    "finetune_epoch": 300,
+    "dec_epoch": 6000,
+    "dims": [313, 70, 70, 500, 10],
     "batch_size": 128,
-    "corrupt": 0.2,
+    "corrupt": 0.35,
     "n_cluster": 19,
     "alpha": 1,
-    "plot": False # can be used to silence all plots
+    "plot": False,  # can be us                     ed to silence all plots
+    "pretrain_lr": 0.001,
+    "pretrain_momentum": 0.9,
+    "pretrain_step_size": 500,
+    "pretrain_gamma": 0.5,
+    "num_workers": 0,
+    "train_step_size": 100,
+    "train_gamma": 1,
+    "train_lr": 0.0001,
+    "train_momentum": 0.9,
+    "clusteralg": "louvain",
+    "reduce_dim": "pca",
+    "dec_lr": 0.005,
+    "dec_step_size": 2000,
+    "dec_gamma": 1,
+    "stopping_delta":0.0000001
 }
-
-# config = {
-#     "data_percentage": 0.1,       #
-#     "lr": 0.1,               # learning rate
-#     "weight_decay": 0.0000001,  # weight decay
-#     "max_epoch": 100,
-#     "dims": [1024, 512, 128, 32, 16],
-#     "n_cluster": 19,
-#     "alpha": 1,
-#     "plot": True # can be used to silence all plots
-# }
-#
-# auto_encode_config = {
-#     "lr": 0.001,               # learning rate
-#     "weight_decay": 0.0000001,  # weight decay
-#     "max_epoch": 3000,
-# }
-#
-# sdae_config = {
-#     "epoches" : 400
-#     ,"batch_size" : 128
-#     ,"finetune_epochs": 100
-# }
 
 ## data
 data_dir = os.path.join("processed_data", "breast_g1")
-gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
-spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
-img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
-gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
-ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth'))
+gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth')).to(device)
+spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth')).to(device)
+img_data = torch.load(os.path.join(data_dir, 'img_encode.pth')).to(device)
+gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth')).to(device)
+ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth')).to(device)
 cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
 
 
 def main():
     # test accuracy of various input
-    # _, pred = get_centre_pred(cat_data, reduce_dim="umap", n_components=50)
+    # print("Ground truth: ")
+    # eval_accuracy(ground_truth, ground_truth)
+    _, pred = get_centre_pred(gene_raw_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
+    print("raw gene expression: ")
+    eval_accuracy(pred, ground_truth)
+    # _, pred = get_centre_pred(cat_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
+    # print("concatenated expression: ")
     # eval_accuracy(pred, ground_truth)
-    # _, pred = get_centre_pred(gene_data, reduce_dim="umap")
+    # _, pred = get_centre_pred(gene_data,reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
+    # print("geneformer encoded expression: ")
     # eval_accuracy(pred, ground_truth)
-    # _, pred = get_centre_pred(img_data, reduce_dim="umap")
+    # _, pred = get_centre_pred(img_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
+    # print("img encoded: ")
     # eval_accuracy(pred, ground_truth)
-    # _, pred = get_centre_pred(spatial_data, reduce_dim="umap")
+    # _, pred = get_centre_pred(spatial_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
+    # print("coord encoded: ")
     # eval_accuracy(pred, ground_truth)
 
-    train_dataset = CellDataset()
+
+
+    run_name = generateRunName()
+    wandb.login(key="bee43af8ef4c8ec45c3bdfc2ce404e435d5f23cf")
+    wandb.init(project="[AI539] Final Project", name=run_name, config=config)
+    logger = wandb
+    train_dataset = CellRawExpDataset()
     autoencoder = StackedDenoisingAutoEncoder(
         config["dims"], final_activation = None
     )
@@ -101,14 +120,16 @@ def main():
         validation = None,
         epochs = config['pretrain_epoch'],
         batch_size = config['batch_size'],
-        optimizer=lambda model: SGD(model.parameters(), lr=0.1, momentum=0.9),
-        scheduler=lambda x: StepLR(x, 100, gamma=0.1),
+        optimizer=lambda model: SGD(model.parameters(), lr=config['pretrain_lr'], momentum=config['pretrain_momentum']),
+        scheduler=lambda x: StepLR(x, config['pretrain_step_size'], gamma=config['pretrain_gamma']),
         corruption=config['corrupt'],
         silent = False,
-        num_workers=4
+        num_workers= config['num_workers'],
+        logger = logger,
     )
     print("training stage-----")
-    ae_optimizer = SGD(params=autoencoder.parameters(), lr=0.01, momentum=0.9)
+    ae_optimizer = SGD(params=autoencoder.parameters(), lr=config['train_lr'], momentum=config['train_momentum'])
+    progress = tqdm(total=config['finetune_epoch'], desc="Training Progress")
     ae.train(
         train_dataset,
         autoencoder,
@@ -117,33 +138,42 @@ def main():
         epochs= config['finetune_epoch'],
         batch_size=config['batch_size'],
         optimizer=ae_optimizer,
-        scheduler=StepLR(ae_optimizer, 100, gamma=0.1),
+        scheduler=StepLR(ae_optimizer, config['train_step_size'], gamma=config['train_gamma']),
         corruption=config["corrupt"],
-        num_workers=4
+        num_workers=config['num_workers'],
+        logger = logger,
+        logger_desc = "train",
+        progress_bar = progress,
     )
+    progress.close()
+
     with torch.no_grad():
-        z = autoencoder.encoder(cat_data)
+        z = autoencoder.encoder(gene_raw_data.to(torch.float32))
+
+    # print(z)
     visualize_2d(z, ground_truth)
-    _, pred = get_centre_pred(z)
+    _, pred = get_centre_pred(z, clustering=config['clusteralg'])
     eval_accuracy(pred, ground_truth)
 
-    # print("DEC stage-----")
-    # model = DEC(cluster_number=config['n_cluster'], hidden_dimension=config["dims"][-1], encoder = autoencoder.encoder)
-    # dec_optimizer = SGD(params=model.parameters(), lr=0.01, momentum=0.9)
-    # train(
-    #     dataset= train_dataset,
-    #     model=model,
-    #     epochs=config['dec_epoch'],
-    #     batch_size=config['batch_size'],
-    #     optimizer=dec_optimizer,
-    #     stopping_delta=0.000001,
-    #     cuda=False
-    # )
-    # pred, true = predict(train_dataset, model, 1024, silent = True, return_actual=True, cuda = False)
-    # with torch.no_grad():
-    #     z = model.encoder(cat_data)
-    # visualize_2d(z, ground_truth)
-    # eval_accuracy(pred, true)
+    print("DEC stage-----")
+    model = DEC(cluster_number=config['n_cluster'], hidden_dimension=config["dims"][-1], encoder = autoencoder.encoder)
+    dec_optimizer = SGD(params=model.parameters(), lr=config['dec_lr'], momentum=0.9)
+    train(
+        dataset= train_dataset,
+        model=model,
+        epochs=config['dec_epoch'],
+        batch_size=config['batch_size'],
+        optimizer=dec_optimizer,
+        scheduler=StepLR(dec_optimizer, config['dec_step_size'], gamma=config['dec_gamma']),
+        stopping_delta=config["stopping_delta"],
+        cuda=cuda,
+        logger = logger,
+    )
+    pred, true = predict(train_dataset, model, config["batch_size"], silent = True, return_actual=True, cuda = cuda)
+    with torch.no_grad():
+        z = model.encoder(gene_raw_data.to(torch.float32))
+    visualize_2d(z, ground_truth)
+    eval_accuracy(pred, true)
 
 
     # train self written version of autoencoder
@@ -264,7 +294,7 @@ def visualize_2d(z, ground_truth, reduce_dim = "umap"):
     plt.colorbar(label="Cluster")
     plt.show()
 
-def get_centre_pred(z, reduce_dim = None, n_components = 10):
+def get_centre_pred(z, reduce_dim = None, clustering = "kmeans" ,n_components = 10, n_neighbors = 15):
     if not isinstance(z, np.ndarray):
         z = z.detach().cpu().numpy()
 
@@ -277,21 +307,29 @@ def get_centre_pred(z, reduce_dim = None, n_components = 10):
     else:
         print("Dimension not reduced")
 
-    kmeans = KMeans(config["n_cluster"], n_init=30, random_state=42)
+    if clustering == "louvain":
+        # create K-NN graph
+        knn_graph = kneighbors_graph(z, n_neighbors=n_neighbors, include_self=False)
+        G = nx.from_scipy_sparse_array(knn_graph)
 
-    pred = kmeans.fit_predict(z)
+        # run louvian
+        partition = community_louvain.best_partition(G)
+        pred = np.array([partition[i] for i in range(len(z))])
 
-    centroid = torch.tensor(kmeans.cluster_centers_, dtype=torch.float32, requires_grad=False, device=device)
+        # compute centroids
+        cluster_dict = defaultdict(list)
+        for idx, label in enumerate(pred):
+            cluster_dict[label].append(z[idx])
+        centroids_np = np.array([np.mean(cluster_dict[c], axis=0) for c in sorted(cluster_dict)])
+        centroid = torch.tensor(centroids_np, dtype=torch.float32, device=device)
+    else:
+        kmeans = KMeans(config["n_cluster"], n_init=30, random_state=42)
+        pred = kmeans.fit_predict(z)
+        centroid = torch.tensor(kmeans.cluster_centers_, dtype=torch.float32, requires_grad=False, device=device)
 
     return centroid, pred
     
-    # cent = Parameter(torch.Tensor(config["n_cluster"], z.shape[1]).cuda())
-    # Group = pd.Series(pred, index=range(z.shape[0]), name="Group")
-    # features = pd.DataFrame(z.detach().numpy(),index=np.arange(0,z.shape[0]))
-    # merge_feature = pd.concat([features, Group], axis=1)
-    # cluster_centers = np.asarray(merge_feature.groupby("Group").mean())
-    # cluster_centers = torch.Tensor(cluster_centers)
-    # cent.data.copy_(cluster_centers)
+
 
 def loss_function(p, q):
     def kld(target, pred):
@@ -367,5 +405,13 @@ def eval_accuracy(pred, ground_truth):
     print("Accuracy:", acc)
     # print("confusion:", cm)
 
+    score = silhouette_score(gene_raw_data, pred, metric='euclidean')
+    print("Score:", score)
+
+def generateRunName():
+  random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+  now = datetime.datetime.now()
+  run_name = ""+random_string+"_Multi30k"
+  return run_name
 
 main()

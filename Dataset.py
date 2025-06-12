@@ -86,10 +86,68 @@ class CellDataset(Dataset):
         return cat, self.true[idx]
 
 
+class CellRawExpDataset(Dataset):
+    def __init__(self, data_dir="processed_data", samples="breast_g1",
+                 ge_files="raw_expression.pth", ground_truth = "ground_truth.pth"):
+        self.gene = torch.load(os.path.join(data_dir, samples, ge_files))
+        self.true = torch.load(os.path.join(data_dir, samples, ground_truth))
+        self.len = self.gene.shape[0]
+
+    def __len__(self):
+        '''
+        :return: [1] integer for number of tissue samples in dataset
+        '''
+        return self.len
+
+    def __getitem__(self, idx):
+        x = self.gene[idx, :]
+        y = self.true[idx]
+        if x.requires_grad:
+            x = x.detach()
+        return x.to(torch.float32), y
+
+
+class CellGeneformerDataset(Dataset):
+    def __init__(self, data_dir="processed_data", samples="breast_g1",
+                 ge_files="gene_encode.pth", ground_truth = "ground_truth.pth"):
+        self.gene = torch.load(os.path.join(data_dir, samples, ge_files))
+        self.true = torch.load(os.path.join(data_dir, samples, ground_truth))
+        self.len = self.gene.shape[0]
+
+    def __len__(self):
+        '''
+        :return: [1] integer for number of tissue samples in dataset
+        '''
+        return self.len
+
+    def __getitem__(self, idx):
+        x = self.gene[idx, :]
+        y = self.true[idx]
+        if x.requires_grad:
+            x = x.detach()
+        return x, y
+
+
 train_dataset = CellDataset()
 train_loader = DataLoader(train_dataset, batch_size=512, shuffle=True, pin_memory=True)
 for batch in train_loader:
     x, y = batch
     print("Concatenated Features shape:", x.shape)
+    print("Truth shape:", y.shape)
+    break
+
+train_dataset = CellRawExpDataset()
+train_loader = DataLoader(train_dataset, batch_size=512, shuffle=True, pin_memory=True)
+for batch in train_loader:
+    x, y = batch
+    print("Cell raw gene expression:", x.shape)
+    print("Truth shape:", y.shape)
+    break
+
+train_dataset = CellGeneformerDataset()
+train_loader = DataLoader(train_dataset, batch_size=512, shuffle=True, pin_memory=True)
+for batch in train_loader:
+    x, y = batch
+    print("Gene encoded expression:", x.shape)
     print("Truth shape:", y.shape)
     break

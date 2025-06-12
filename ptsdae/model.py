@@ -25,6 +25,9 @@ def train(
     update_callback: Optional[Callable[[float, float], None]] = None,
     num_workers: Optional[int] = None,
     epoch_callback: Optional[Callable[[int, torch.nn.Module], None]] = None,
+    logger: Optional[any] = None,
+    logger_desc: Optional[any] = None,
+    progress_bar: Optional[tqdm] = None,
 ) -> None:
     """
     Function to train an autoencoder using the provided dataset. If the dataset consists of 2-tuples or lists of
@@ -55,31 +58,13 @@ def train(
         shuffle=True if sampler is None else False,
         num_workers=num_workers if num_workers is not None else 0,
     )
-    if validation is not None:
-        validation_loader = DataLoader(
-            validation,
-            batch_size=batch_size,
-            pin_memory=False,
-            sampler=None,
-            shuffle=False,
-        )
-    else:
-        validation_loader = None
     loss_function = nn.MSELoss()
     autoencoder.train()
-    validation_loss_value = -1
-    loss_value = 0
     for epoch in range(epochs):
         if scheduler is not None:
             scheduler.step()
-        data_iterator = tqdm(
-            dataloader,
-            leave=True,
-            unit="batch",
-            postfix={"epo": epoch, "lss": "%.6f" % 0.0, "vls": "%.6f" % -1,},
-            disable=silent,
-        )
-        for index, batch in enumerate(data_iterator):
+        loss = 0
+        for batch in dataloader:
             if (
                 isinstance(batch, tuple)
                 or isinstance(batch, list)
@@ -99,46 +84,15 @@ def train(
             optimizer.zero_grad()
             loss.backward()
             optimizer.step(closure=None)
-            data_iterator.set_postfix(
-                epo=epoch, lss="%.6f" % loss_value, vls="%.6f" % validation_loss_value,
-            )
-        if update_freq is not None and epoch % update_freq == 0:
-            if validation_loader is not None:
-                validation_output = predict(
-                    validation,
-                    autoencoder,
-                    batch_size,
-                    cuda=cuda,
-                    silent=True,
-                    encode=False,
-                )
-                validation_inputs = []
-                for val_batch in validation_loader:
-                    if (
-                        isinstance(val_batch, tuple) or isinstance(val_batch, list)
-                    ) and len(val_batch) in [1, 2]:
-                        validation_inputs.append(val_batch[0])
-                    else:
-                        validation_inputs.append(val_batch)
-                validation_actual = torch.cat(validation_inputs)
-                if cuda:
-                    validation_actual = validation_actual.cuda(non_blocking=True)
-                    validation_output = validation_output.cuda(non_blocking=True)
-                validation_loss = loss_function(validation_output, validation_actual)
-                # validation_accuracy = pretrain_accuracy(validation_output, validation_actual)
-                validation_loss_value = float(validation_loss.item())
-                data_iterator.set_postfix(
-                    epo=epoch,
-                    lss="%.6f" % loss_value,
-                    vls="%.6f" % validation_loss_value,
-                )
-                autoencoder.train()
-            else:
-                validation_loss_value = -1
-                # validation_accuracy = -1
-                data_iterator.set_postfix(
-                    epo=epoch, lss="%.6f" % loss_value, vls="%.6f" % -1,
-                )
+            loss += loss_value
+        avg_loss = loss / len(dataloader)
+        if logger is not None and logger_desc is not None:
+            logger.log({f"{logger_desc}/Loss": avg_loss.item()})
+
+
+        if progress_bar is not None:
+            progress_bar.update(1)
+            progress_bar.set_postfix(avg_loss=avg_loss.item())
         #     if update_callback is not None:
         #         update_callback(
         #             epoch,
@@ -168,6 +122,7 @@ def pretrain(
     update_callback: Optional[Callable[[float, float], None]] = None,
     num_workers: Optional[int] = None,
     epoch_callback: Optional[Callable[[int, torch.nn.Module], None]] = None,
+    logger: Optional[any] = None,
 ) -> None:
     """
     Given an autoencoder, train it using the data provided in the dataset; for simplicity the accuracy is reported only
@@ -194,8 +149,9 @@ def pretrain(
     current_dataset = dataset
     current_validation = validation
     number_of_subautoencoders = len(autoencoder.dimensions) - 1
+    total_it = number_of_subautoencoders * epochs
+    progress = tqdm(total=total_it, desc = "Pretraining Progress")
     for index in range(number_of_subautoencoders):
-        print("Training subautoencoder %d/%d" % (index + 1, number_of_subautoencoders))
         encoder, decoder = autoencoder.get_stack(index)
         embedding_dimension = autoencoder.dimensions[index]
         hidden_dimension = autoencoder.dimensions[index + 1]
@@ -206,9 +162,12 @@ def pretrain(
         sub_autoencoder = DenoisingAutoencoder(
             embedding_dimension=embedding_dimension,
             hidden_dimension=hidden_dimension,
-            activation=torch.nn.ReLU()
+            activation=torch.nn.Tanh()
             if index != (number_of_subautoencoders - 1)
             else None,
+            # activation=torch.nn.ReLU()
+            # if index != (number_of_subautoencoders - 1)
+            # else None,
             corruption=nn.Dropout(corruption) if corruption is not None else None,
         )
         if cuda:
@@ -231,6 +190,9 @@ def pretrain(
             update_callback=update_callback,
             num_workers=num_workers,
             epoch_callback=epoch_callback,
+            logger = logger,
+            progress_bar = progress,
+            logger_desc="Pretrain"
         )
         # copy the weights
         sub_autoencoder.copy_weights(encoder, decoder)
@@ -283,11 +245,10 @@ def predict(
     dataloader = DataLoader(
         dataset, batch_size=batch_size, pin_memory=False, shuffle=False
     )
-    data_iterator = tqdm(dataloader, leave=False, unit="batch", disable=silent,)
     features = []
     if isinstance(model, torch.nn.Module):
         model.eval()
-    for batch in data_iterator:
+    for batch in dataloader:
         if isinstance(batch, tuple) or isinstance(batch, list) and len(batch) in [1, 2]:
             batch = batch[0]
         if cuda:

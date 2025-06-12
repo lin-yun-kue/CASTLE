@@ -1,0 +1,23 @@
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_setup.py:_flush():70] Current SDK version is 0.19.11
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_setup.py:_flush():70] Configure stats pid to 1254
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_setup.py:_flush():70] Loading settings from /Users/grace/.config/wandb/settings
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_setup.py:_flush():70] Loading settings from /Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/settings
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_setup.py:_flush():70] Loading settings from environment variables
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_init.py:setup_run_log_directory():724] Logging user logs to /Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_020050-glykkj6a/logs/debug.log
+2025-06-12 02:00:50,774 INFO    MainThread:1254 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to /Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_020050-glykkj6a/logs/debug-internal.log
+2025-06-12 02:00:50,775 INFO    MainThread:1254 [wandb_init.py:init():852] calling init triggers
+2025-06-12 02:00:50,775 INFO    MainThread:1254 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'pretrain_epoch': 2000, 'finetune_epoch': 300, 'dec_epoch': 6000, 'dims': [313, 50, 50, 500, 10], 'batch_size': 512, 'corrupt': 0.35, 'n_cluster': 19, 'alpha': 1, 'plot': False, 'pretrain_lr': 0.0001, 'pretrain_momentum': 0.9, 'pretrain_step_size': 100, 'pretrain_gamma': 1, 'num_workers': 0, 'train_step_size': 100, 'train_gamma': 1, 'train_lr': 0.001, 'train_momentum': 0.9, 'clusteralg': 'louvain', 'reduce_dim': 'pca', 'dec_lr': 0.005, 'dec_step_size': 2000, 'dec_gamma': 0.2, 'stopping_delta': 1e-07, '_wandb': {}}
+2025-06-12 02:00:50,775 INFO    MainThread:1254 [wandb_init.py:init():893] starting backend
+2025-06-12 02:00:50,775 INFO    MainThread:1254 [wandb_init.py:init():897] sending inform_init request
+2025-06-12 02:00:50,802 INFO    MainThread:1254 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2025-06-12 02:00:50,802 INFO    MainThread:1254 [wandb_init.py:init():907] backend started and connected
+2025-06-12 02:00:50,808 INFO    MainThread:1254 [wandb_init.py:init():1005] updated telemetry
+2025-06-12 02:00:50,841 INFO    MainThread:1254 [wandb_init.py:init():1029] communicating run to backend with 90.0 second timeout
+2025-06-12 02:00:51,258 INFO    MainThread:1254 [wandb_init.py:init():1104] starting run threads in backend
+2025-06-12 02:00:51,363 INFO    MainThread:1254 [wandb_run.py:_console_start():2573] atexit reg
+2025-06-12 02:00:51,363 INFO    MainThread:1254 [wandb_run.py:_redirect():2421] redirect: wrap_raw
+2025-06-12 02:00:51,364 INFO    MainThread:1254 [wandb_run.py:_redirect():2490] Wrapping output streams.
+2025-06-12 02:00:51,364 INFO    MainThread:1254 [wandb_run.py:_redirect():2513] Redirects installed.
+2025-06-12 02:00:51,365 INFO    MainThread:1254 [wandb_init.py:init():1150] run started, returning control to user process
+2025-06-12 02:03:43,441 INFO    MsgRouterThr:1254 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

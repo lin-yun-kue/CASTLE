@@ -24,6 +24,8 @@ def train(
     evaluate_batch_size: int = 1024,
     update_callback: Optional[Callable[[float, float], None]] = None,
     epoch_callback: Optional[Callable[[int, torch.nn.Module], None]] = None,
+    scheduler: Optional[any] = None,
+    logger: Optional[any] = None,
 ) -> None:
     """
     Train the DEC model given a dataset, a model instance and various configuration parameters.
@@ -59,24 +61,12 @@ def train(
         sampler=sampler,
         shuffle=True,
     )
-    data_iterator = tqdm(
-        static_dataloader,
-        leave=True,
-        unit="batch",
-        postfix={
-            "epo": -1,
-            "acc": "%.4f" % 0.0,
-            "lss": "%.8f" % 0.0,
-            "dlb": "%.4f" % -1,
-        },
-        disable=silent,
-    )
     kmeans = KMeans(n_clusters=model.cluster_number, n_init=20)
     model.train()
     features = []
     actual = []
     # form initial cluster centres
-    for index, batch in enumerate(data_iterator):
+    for batch in static_dataloader:
         if (isinstance(batch, tuple) or isinstance(batch, list)) and len(batch) == 2:
             batch, value = batch  # if we have a prediction label, separate it to actual
             actual.append(value)
@@ -97,22 +87,15 @@ def train(
         model.state_dict()["assignment.cluster_centers"].copy_(cluster_centers)
     loss_function = nn.KLDivLoss(size_average=False)
     delta_label = None
+    progress = tqdm(total=epochs, desc="DEC Training", leave=True)
     for epoch in range(epochs):
+        if scheduler is not None:
+            scheduler.step()
         features = []
-        data_iterator = tqdm(
-            train_dataloader,
-            leave=True,
-            unit="batch",
-            postfix={
-                "epo": epoch,
-                "acc": "%.4f" % (accuracy or 0.0),
-                "lss": "%.8f" % 0.0,
-                "dlb": "%.4f" % (delta_label or 0.0),
-            },
-            disable=silent,
-        )
         model.train()
-        for index, batch in enumerate(data_iterator):
+        loss_value = 0
+        entropy_value = 0
+        for batch in train_dataloader:
             if (isinstance(batch, tuple) or isinstance(batch, list)) and len(
                 batch
             ) == 2:
@@ -122,28 +105,17 @@ def train(
             output = model(batch)
             target = target_distribution(output).detach()
             loss = loss_function(output.log(), target) / output.shape[0]
-            entropy = -torch.sum(output.log() * torch.log(output.log() + 1e-6), dim=1).mean()
-            data_iterator.set_postfix(
-                epo=epoch,
-                acc="%.4f" % (accuracy or 0.0),
-                lss="%.8f" % float(loss.item()),
-                dlb="%.4f" % (delta_label or 0.0),
-                entropy = "%.4f" % float(entropy.item()),
-            )
+            entropy = -torch.sum(output * torch.log(output + 1e-6), dim=1).mean()
             optimizer.zero_grad()
             loss.backward()
             optimizer.step(closure=None)
             features.append(model.encoder(batch).detach().cpu())
-            if update_freq is not None and index % update_freq == 0:
-                loss_value = float(loss.item())
-                data_iterator.set_postfix(
-                    epo=epoch,
-                    acc="%.4f" % (accuracy or 0.0),
-                    lss="%.8f" % loss_value,
-                    dlb="%.4f" % (delta_label or 0.0),
-                )
-                if update_callback is not None:
-                    update_callback(accuracy, loss_value, delta_label)
+            loss_value += loss
+            entropy_value += entropy
+
+        avg_loss = loss_value / len(train_dataloader)
+        avg_entropy = entropy_value / len(train_dataloader)
+
         predicted, actual = predict(
             dataset,
             model,
@@ -159,20 +131,25 @@ def train(
         )
         if stopping_delta is not None and delta_label < stopping_delta:
             print(
-                'Early stopping as label delta "%1.5f" less than "%1.5f".'
+                'Early stopping as label delta "%1.8f" less than "%1.8f".'
                 % (delta_label, stopping_delta)
             )
             break
         predicted_previous = predicted
-        _, accuracy = cluster_accuracy(predicted.cpu().numpy(), actual.cpu().numpy())
-        data_iterator.set_postfix(
-            epo=epoch,
-            acc="%.4f" % (accuracy or 0.0),
-            lss="%.8f" % 0.0,
-            dlb="%.4f" % (delta_label or 0.0),
-        )
+
         if epoch_callback is not None:
             epoch_callback(epoch, model)
+
+        progress.update(1)
+        progress.set_postfix(
+            avg_loss=avg_loss.item(),
+            delta_label=delta_label,
+            avg_entropy=avg_entropy.item(),
+        )
+
+        if logger is not None:
+            logger.log({"DEC/Entropy": avg_entropy.item()})
+            logger.log({"DEC/Delta": delta_label})
 
 
 def predict(
