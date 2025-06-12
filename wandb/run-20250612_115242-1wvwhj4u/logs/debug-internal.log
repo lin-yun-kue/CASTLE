@@ -1,0 +1,16 @@
+{"time":"2025-06-12T11:52:42.220452-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_115242-1wvwhj4u/logs/debug-core.log"}
+{"time":"2025-06-12T11:52:42.495351-07:00","level":"INFO","msg":"created new stream","id":"1wvwhj4u"}
+{"time":"2025-06-12T11:52:42.495394-07:00","level":"INFO","msg":"stream: started","id":"1wvwhj4u"}
+{"time":"2025-06-12T11:52:42.495419-07:00","level":"INFO","msg":"handler: started","stream_id":"1wvwhj4u"}
+{"time":"2025-06-12T11:52:42.495433-07:00","level":"INFO","msg":"sender: started","stream_id":"1wvwhj4u"}
+{"time":"2025-06-12T11:52:42.495463-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"1wvwhj4u"}
+{"time":"2025-06-12T11:53:12.496679-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-12T11:53:44.555011-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-12T11:53:58.495022-07:00","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/graphql","body":"{\"error\":\"googleapi: Error 503: Visibility check was unavailable. Please retry the request and contact support if the problem persists, backendError\"}"}
+{"time":"2025-06-12T11:54:12.934909-07:00","level":"INFO","msg":"stream: closing","id":"1wvwhj4u"}
+{"time":"2025-06-12T11:54:12.934972-07:00","level":"ERROR","msg":"sender: upsertRun:","error":"failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 4 attempt(s): context canceled"}
+{"time":"2025-06-12T11:54:12.93502-07:00","level":"INFO","msg":"handler: closed","stream_id":"1wvwhj4u"}
+{"time":"2025-06-12T11:54:12.935043-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"1wvwhj4u"}
+{"time":"2025-06-12T11:54:12.935074-07:00","level":"INFO","msg":"sender: closed","stream_id":"1wvwhj4u"}
+{"time":"2025-06-12T11:54:12.935114-07:00","level":"WARN","msg":"runwork: ignoring record after close","work":{}}
+{"time":"2025-06-12T11:54:12.935313-07:00","level":"INFO","msg":"stream: closed","id":"1wvwhj4u"}

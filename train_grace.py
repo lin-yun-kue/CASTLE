@@ -71,11 +71,11 @@ config = {
 
 ## data
 data_dir = os.path.join("processed_data", "breast_g1")
-gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth')).to(device)
-spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth')).to(device)
-img_data = torch.load(os.path.join(data_dir, 'img_encode.pth')).to(device)
-gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth')).to(device)
-ground_truth = torch.load(os.path.join(data_dir, 'ground_truth.pth')).to(device)
+gene_data = torch.load(os.path.join(data_dir, 'gene_encode_big.pth')).to(device)
+spatial_data = torch.load(os.path.join(data_dir, 'coord_encode_big.pth')).to(device)
+img_data = torch.load(os.path.join(data_dir, 'img_encode_big.pth')).to(device)
+gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression_big.pth')).to(device)
+ground_truth = torch.load(os.path.join(data_dir, 'ground_truth_big.pth')).to(device)
 cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
 
 

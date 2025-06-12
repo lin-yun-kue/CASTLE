@@ -88,7 +88,7 @@ class CellDataset(Dataset):
 
 class CellRawExpDataset(Dataset):
     def __init__(self, data_dir="processed_data", samples="breast_g1",
-                 ge_files="raw_expression.pth", ground_truth = "ground_truth.pth"):
+                 ge_files="raw_expression_big.pth", ground_truth = "ground_truth_big.pth"):
         self.gene = torch.load(os.path.join(data_dir, samples, ge_files))
         self.true = torch.load(os.path.join(data_dir, samples, ground_truth))
         self.len = self.gene.shape[0]
