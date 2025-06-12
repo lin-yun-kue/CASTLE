@@ -56,7 +56,7 @@ config = {
     "pretrain_momentum": 0.9,
     "pretrain_step_size": 500,
     "pretrain_gamma": 0.5,
-    "num_workers": 0,
+    "num_workers": 4 if cuda else 0,
     "train_step_size": 100,
     "train_gamma": 1,
     "train_lr": 0.0001,
