@@ -408,9 +408,9 @@ def eval_accuracy(pred, ground_truth):
         plt.show()
     print("Accuracy:", acc)
     # print("confusion:", cm)
-
-    score = silhouette_score(gene_raw_data, pred, metric='euclidean')
-    print("Score:", score)
+    #
+    # score = silhouette_score(gene_raw_data, pred, metric='euclidean')
+    # print("Score:", score)
 
 def generateRunName():
   random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
