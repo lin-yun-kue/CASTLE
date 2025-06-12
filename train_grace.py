@@ -43,8 +43,8 @@ cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
-    "pretrain_epoch": 1000,
-    "finetune_epoch": 300,
+    "pretrain_epoch": 200,
+    "finetune_epoch": 50,
     "dec_epoch": 6000,
     "dims": [313, 70, 70, 500, 10],
     "batch_size": 128,
@@ -55,7 +55,7 @@ config = {
     "pretrain_lr": 0.001,
     "pretrain_momentum": 0.9,
     "pretrain_step_size": 500,
-    "pretrain_gamma": 0.5,
+    "pretrain_gamma": 0.2,
     "num_workers": 4 if cuda else 0,
     "train_step_size": 100,
     "train_gamma": 1,
@@ -225,59 +225,6 @@ def train_auto_encoder(model):
     torch.save(model.state_dict(), './chkpts/auto_model.pth')
     
 
-
-def train_dec(model):
-    optimizer = optim.Adam(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
-    criterion = F.kl_div
-
-
-    loss_his =[]
-    model.train()            
-    for epoch in range(config["max_epoch"]):
-    # for epoch in tqdm(range(config["max_epoch"])):
-        z = model(cat_data) # [N, d]
-
-        z_cpu = z.cpu().detach().numpy()
-        cent, _ = get_centre_pred(z_cpu)
-
-        # only visualize every 10 epoch
-        if epoch % 10 == 0:
-            visualize_2d(z, ground_truth)
-
-        q = soft_cluster(z, cent, config["alpha"])
-        p = target_distribution(q)
-
-        loss = criterion(q.log(), p, reduction='batchmean')
-        loss.backward()
-
-        optimizer.step()
-        optimizer.zero_grad()
-
-        loss_his.append(loss.item())
-        
-        entropy = -torch.sum(q * torch.log(q + 1e-6), dim=1).mean()
-        print(f"[Epoch {epoch}] KL Loss: {loss.item():.4f}, Q entropy: {entropy.item():.4f}")
-    
-    print(q[0])
-    print(p[0])    
-    if config["plot"]:
-        plot_graph(loss_his)
-    torch.save(model.state_dict(), './chkpts/model.pth')
-
-    ## final cluster output
-    with torch.no_grad():
-        z = model(cat_data)
-        z_cpu = z.cpu().detach().numpy()
-        z_cent, _ = get_centre_pred(z_cpu, ground_truth)
-        pred_m = soft_cluster(z, z_cent, config["alpha"]).cpu().detach()
-        pred_m = np.argmax(pred_m, axis=1)
-
-    # _, pred_c = get_centre_pred(cat_data.cpu().detach().numpy(), ground_truth, reduce_dim="umap")
-    # _, pred_g = get_centre_pred(gene_data.cpu().detach().numpy(), ground_truth, reduce_dim = "umap")
-    # _, gene_r = get_centre_pred(gene_raw_data.cpu().detach().numpy(), ground_truth, reduce_dim = "umap")
-
-    return pred_m
-    # return pred_m, pred_c, pred_g, gene_r
 
 def visualize_2d(z, ground_truth, logger, descrip, reduce_dim = "umap"):
     if not isinstance(z, np.ndarray):
