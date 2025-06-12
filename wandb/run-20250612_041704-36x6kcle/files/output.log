@@ -1,0 +1,39 @@
+StackedDenoisingAutoEncoder(
+  (encoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=313, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=70, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=70, out_features=500, bias=True)
+      (activation): ReLU()
+    )
+    (3): Sequential(
+      (linear): Linear(in_features=500, out_features=10, bias=True)
+    )
+  )
+  (decoder): Sequential(
+    (0): Sequential(
+      (linear): Linear(in_features=10, out_features=500, bias=True)
+      (activation): ReLU()
+    )
+    (1): Sequential(
+      (linear): Linear(in_features=500, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (2): Sequential(
+      (linear): Linear(in_features=70, out_features=70, bias=True)
+      (activation): ReLU()
+    )
+    (3): Sequential(
+      (linear): Linear(in_features=70, out_features=313, bias=True)
+    )
+  )
+)
+model is launched on device: cpu
+pretraining stage-----
+Pretraining Progress:  32%|███▏      | 256/800 [00:08<00:08, 61.64it/s, avg_loss=0.0336]

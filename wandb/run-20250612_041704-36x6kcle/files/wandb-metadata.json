@@ -1,0 +1,44 @@
+{
+  "os": "macOS-14.6.1-arm64-arm-64bit-Mach-O",
+  "python": "CPython 3.13.2",
+  "startedAt": "2025-06-12T11:17:04.618888Z",
+  "program": "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/train_grace.py",
+  "codePath": "train_grace.py",
+  "git": {
+    "remote": "https://github.com/lin-yun-kue/CASTLE.git",
+    "commit": "01cd43ac3f547d86dd8988752010571a25a52afb"
+  },
+  "email": "grace.weiqi.li@gmail.com",
+  "root": "/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE",
+  "host": "10-197-140-225.sds.oregonstate.edu",
+  "executable": "/opt/anaconda3/envs/castle/bin/python",
+  "codePathLocal": "train_grace.py",
+  "cpu_count": 8,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "416535257088"
+    },
+    "/System/Volumes/Data": {
+      "total": "494384795648",
+      "used": "416535257088"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 8
+  },
+  "apple": {
+    "name": "Apple M1",
+    "ecpuCores": 4,
+    "pcpuCores": 4,
+    "gpuCores": 8,
+    "memoryGb": 16,
+    "swapTotalBytes": "6442450944",
+    "ramTotalBytes": "17179869184"
+  }
+}

@@ -86,12 +86,14 @@ def main():
     _, pred = get_centre_pred(gene_raw_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
     print("raw gene expression: ")
     eval_accuracy(pred, ground_truth)
+    # visualize_2d(gene_raw_data, ground_truth, logger=None, descrip="DEC")
     # _, pred = get_centre_pred(cat_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
     # print("concatenated expression: ")
     # eval_accuracy(pred, ground_truth)
     # _, pred = get_centre_pred(gene_data,reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
     # print("geneformer encoded expression: ")
     # eval_accuracy(pred, ground_truth)
+    # visualize_2d(gene_data, ground_truth, logger=None, descrip="DEC")
     # _, pred = get_centre_pred(img_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
     # print("img encoded: ")
     # eval_accuracy(pred, ground_truth)
@@ -157,6 +159,7 @@ def main():
 
     print("DEC stage-----")
     model = DEC(cluster_number=config['n_cluster'], hidden_dimension=config["dims"][-1], encoder = autoencoder.encoder)
+    model.to(device)
     dec_optimizer = SGD(params=model.parameters(), lr=config['dec_lr'], momentum=0.9)
     train(
         dataset= train_dataset,
@@ -243,7 +246,8 @@ def visualize_2d(z, ground_truth, logger, descrip, reduce_dim = "umap"):
     plt.colorbar(label="Cluster")
     if not cuda:
         plt.show()
-    logger.log({f"Viz/{descrip}": wandb.Image(fig)})
+    if logger is not None:
+        logger.log({f"Viz/{descrip}": wandb.Image(fig)})
 
 
 def get_centre_pred(z, reduce_dim = None, clustering = "kmeans" ,n_components = 10, n_neighbors = 15):
