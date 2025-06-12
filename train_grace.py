@@ -104,7 +104,10 @@ def main():
 
 
     run_name = generateRunName()
-    wandb.login(key="bee43af8ef4c8ec45c3bdfc2ce404e435d5f23cf")
+    if cuda:
+        wandb.login()
+    else:
+        wandb.login(key="bee43af8ef4c8ec45c3bdfc2ce404e435d5f23cf")
     wandb.init(project="[AI539] Final Project", name=run_name, config=config)
     logger = wandb
     train_dataset = CellRawExpDataset()
