@@ -151,7 +151,7 @@ def main():
         z = autoencoder.encoder(gene_raw_data.to(torch.float32))
 
     # print(z)
-    visualize_2d(z, ground_truth)
+    visualize_2d(z, ground_truth, logger=logger, descrip="SDAE")
     _, pred = get_centre_pred(z, clustering=config['clusteralg'])
     eval_accuracy(pred, ground_truth)
 
@@ -172,7 +172,7 @@ def main():
     pred, true = predict(train_dataset, model, config["batch_size"], silent = True, return_actual=True, cuda = cuda)
     with torch.no_grad():
         z = model.encoder(gene_raw_data.to(torch.float32))
-    visualize_2d(z, ground_truth)
+    visualize_2d(z, ground_truth, logger=logger, descrip="DEC")
     eval_accuracy(pred, true)
 
 
@@ -279,20 +279,24 @@ def train_dec(model):
     return pred_m
     # return pred_m, pred_c, pred_g, gene_r
 
-def visualize_2d(z, ground_truth, reduce_dim = "umap"):
+def visualize_2d(z, ground_truth, logger, descrip, reduce_dim = "umap"):
     if not isinstance(z, np.ndarray):
         z = z.detach().cpu().numpy()
     if not isinstance(ground_truth, np.ndarray):
         ground_truth = ground_truth.detach().cpu().numpy()
     vis_reducer = PCA(n_components=2) if reduce_dim != "umap" else umap.UMAP(n_components=2)
     z_2d = vis_reducer.fit_transform(z)
+    fig = plt.figure()
     plt.figure()
     plt.scatter(z_2d[:, 0], z_2d[:, 1], c=ground_truth, cmap="tab10", s=5, alpha=0.6)
     plt.title(f"2D View after with Cluster Coloring")
     plt.xlabel("Component 1")
     plt.ylabel("Component 2")
     plt.colorbar(label="Cluster")
-    plt.show()
+    if not cuda:
+        plt.show()
+    logger.log({f"Viz/{descrip}": wandb.Image(fig)})
+
 
 def get_centre_pred(z, reduce_dim = None, clustering = "kmeans" ,n_components = 10, n_neighbors = 15):
     if not isinstance(z, np.ndarray):
