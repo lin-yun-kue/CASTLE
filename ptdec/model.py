@@ -87,7 +87,7 @@ def train(
         cluster_centers = cluster_centers.cuda(non_blocking=True)
     with torch.no_grad():
         # initialise the cluster centers
-        model.assignment.cluster_centers.data.copy_(cluster_centers.to(model.assignment.cluster_centers.device))
+        model.assignment.cluster_centers.data.copy_(cluster_centers)
     loss_function = nn.KLDivLoss(size_average=False)
     delta_label = None
     progress = tqdm(total=epochs, desc="DEC Training", leave=True)
