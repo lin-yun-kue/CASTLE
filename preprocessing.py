@@ -1,10 +1,9 @@
 import os
 import util
 import importlib
-import encode.FeatureExtract
-importlib.reload(encode.FeatureExtract)
-from encode.FeatureExtract import GeneformerExtractor, SpatialExtractor2D
-importlib.reload(util)
+# import encode.FeatureExtract
+# from encode.FeatureExtract import GeneformerExtractor, SpatialExtractor2D
+from encode.FeatureExtract import  SpatialExtractor2D, PeriodicEncoding2D
 import h5py
 import torch
 import encode.image_encode
@@ -25,12 +24,12 @@ for sample in samples:
     to_dir = os.path.join(processed_dir, sample)
 
     gene_path = os.path.join(to_dir, "gene_encode.pth")
-    if not os.path.exists(gene_path) or torch.load(gene_path).shape[0] != len(selected_id):
-        # initialize geneformer
-        gene_extractor = GeneformerExtractor()
-        print(gene_extractor.model)
-        gene_extractor.tokenize_data(from_dir, to_dir) # create dataset in processed data
-        gene_extractor.encode(to_dir) # save gene embedding to pth file
+    # if not os.path.exists(gene_path) or torch.load(gene_path).shape[0] != len(selected_id):
+    #     # initialize geneformer
+    #     gene_extractor = GeneformerExtractor()
+    #     print(gene_extractor.model)
+    #     gene_extractor.tokenize_data(from_dir, to_dir) # create dataset in processed data
+    #     gene_extractor.encode(to_dir) # save gene embedding to pth file
 
 
 
@@ -38,7 +37,8 @@ for sample in samples:
     coords = util.process_raw_coord(from_dir, selected_id)
 
     torch.save(coords, os.path.join(to_dir, "raw_coords.pth")) # raw
-    spatial_extractor = SpatialExtractor2D()
+    # spatial_extractor = SpatialExtractor2D()
+    spatial_extractor = PeriodicEncoding2D(num_frequencies=78)
     spatial_extractor.encode(coords, to_dir)
 
     # images
