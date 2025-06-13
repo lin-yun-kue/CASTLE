@@ -1,6 +1,0 @@
-{"time":"2025-06-12T01:27:26.147901-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_012726-48m9hcsd/logs/debug-core.log"}
-{"time":"2025-06-12T01:27:26.472386-07:00","level":"INFO","msg":"created new stream","id":"48m9hcsd"}
-{"time":"2025-06-12T01:27:26.472637-07:00","level":"INFO","msg":"stream: started","id":"48m9hcsd"}
-{"time":"2025-06-12T01:27:26.4774-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"48m9hcsd"}
-{"time":"2025-06-12T01:27:26.478053-07:00","level":"INFO","msg":"handler: started","stream_id":"48m9hcsd"}
-{"time":"2025-06-12T01:27:26.478303-07:00","level":"INFO","msg":"sender: started","stream_id":"48m9hcsd"}
