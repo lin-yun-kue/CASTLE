@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Geneformer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/pt-dec" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/pt-sdae" vcs="Git" />
   </component>

@@ -18,7 +18,8 @@ samples = ["breast_g1"]
 for sample in samples:
     ## gene expression--------------------------------------------------
     # need to rewrite h5ad file to a format that geneformer can tokenize
-    selected_id = util.process_raw_expression(sample, thres = 500)
+    # selected_id = util.process_raw_expression(sample, thres = 500)
+
 
     from_dir = os.path.join(raw_dir, sample)
     to_dir = os.path.join(processed_dir, sample)
@@ -62,14 +63,14 @@ for sample in samples:
     gc.collect()
     extractor = DinoV2FeatureExtractor()
     features = extractor.extract_from_tensor(batch)
-    torch.save(features, os.path.join(to_dir, "img_encode.pth"))
+    torch.save(features, os.path.join(to_dir, "img_encode_small.pth"))
 
     ## ground truth label
     gt = pd.read_csv(os.path.join(from_dir, "clusters.csv"))
     gt["Barcode"] = gt["Barcode"].astype(str)
     gt = dict(zip(gt["Barcode"], gt["Cluster"]))
     selected_gt = [gt.get(id, -1) for id in selected_id]
-    torch.save(torch.tensor(selected_gt, dtype = torch.int8), os.path.join(to_dir, "ground_truth.pth"))
+    torch.save(torch.tensor(selected_gt, dtype = torch.int8), os.path.join(to_dir, "ground_truth_small.pth"))
 
 
 with h5py.File(os.path.join(from_dir,"cell_feature_matrix.h5"), "r") as f:

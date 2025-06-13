@@ -1,0 +1,14 @@
+{"time":"2025-06-12T11:59:53.818227-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/Users/grace/Desktop/00OSU/AI 539 NLP/Final Project/CASTLE_1/CASTLE/wandb/run-20250612_115953-xddevy8w/logs/debug-core.log"}
+{"time":"2025-06-12T11:59:54.137231-07:00","level":"INFO","msg":"created new stream","id":"xddevy8w"}
+{"time":"2025-06-12T11:59:54.137466-07:00","level":"INFO","msg":"stream: started","id":"xddevy8w"}
+{"time":"2025-06-12T11:59:54.137646-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"xddevy8w"}
+{"time":"2025-06-12T11:59:54.137798-07:00","level":"INFO","msg":"handler: started","stream_id":"xddevy8w"}
+{"time":"2025-06-12T11:59:54.138046-07:00","level":"INFO","msg":"sender: started","stream_id":"xddevy8w"}
+{"time":"2025-06-12T12:00:24.144714-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-06-12T12:00:56.603398-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-12T12:01:24.550128-07:00","level":"INFO","msg":"stream: closing","id":"xddevy8w"}
+{"time":"2025-06-12T12:01:24.550413-07:00","level":"INFO","msg":"handler: closed","stream_id":"xddevy8w"}
+{"time":"2025-06-12T12:01:24.55057-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"xddevy8w"}
+{"time":"2025-06-12T12:01:24.550579-07:00","level":"ERROR","msg":"sender: upsertRun:","error":"failed to upsert bucket: api: failed sending: POST https://api.wandb.ai/graphql giving up after 3 attempt(s): context canceled"}
+{"time":"2025-06-12T12:01:24.550756-07:00","level":"INFO","msg":"sender: closed","stream_id":"xddevy8w"}
+{"time":"2025-06-12T12:01:24.550949-07:00","level":"INFO","msg":"stream: closed","id":"xddevy8w"}

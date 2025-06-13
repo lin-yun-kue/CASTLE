@@ -249,10 +249,10 @@ with h5py.File("data/breast_g1/cell_patch_sample.h5", "r") as f:
         plt.show()
 
 data_dir = os.path.join("processed_data", "breast_g1")
-gene_data = torch.load(os.path.join(data_dir, 'gene_encode.pth'))
-spatial_data = torch.load(os.path.join(data_dir, 'coord_encode.pth'))
-img_data = torch.load(os.path.join(data_dir, 'img_encode.pth'))
-gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression.pth'))
+gene_data = torch.load(os.path.join(data_dir, 'gene_encode_small.pth'))
+spatial_data = torch.load(os.path.join(data_dir, 'coord_encode_small.pth'))
+img_data = torch.load(os.path.join(data_dir, 'img_encode_small.pth'))
+gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression_small.pth'))
 
 import matplotlib.pyplot as plt
 def plot_hist(filename, title, sample_size=10000):
@@ -265,10 +265,72 @@ def plot_hist(filename, title, sample_size=10000):
     plt.ylabel('Frequency')
     plt.show()
 
-plot_hist('gene_encode.pth', 'Gene Encoded Data')
-plot_hist('coord_encode.pth', 'Spatial Encoded Data')
-plot_hist('img_encode.pth', 'Image Encoded Data')
-plot_hist('raw_expression.pth', 'Raw Gene Expression Data')
+plot_hist('gene_encode_small.pth', 'Gene Encoded Data')
+plot_hist('coord_encode_small.pth', 'Spatial Encoded Data')
+plot_hist('img_encode_small.pth', 'Image Encoded Data')
+plot_hist('raw_expression_small.pth', 'Raw Gene Expression Data')
 
 import torch
-a = torch.load("processed_data/breast_g1/gene_encode.pth")
+a = torch.load("processed_data/breast_g1/gene_encode_small.pth")
+
+
+
+
+
+
+
+import torch
+import torch.nn.functional as F
+import matplotlib.pyplot as plt
+import h5py
+
+def show_image(tensor, title="Image"):
+    """
+    tensor: [3, H, W] (unnormalized)
+    """
+    img = tensor.permute(1, 2, 0).cpu().numpy()/255.0
+    img = img.clip(0, 1)
+    plt.imshow(img)
+    plt.title(title)
+    plt.axis('off')
+    plt.show()
+
+with h5py.File("data/breast_g1/cell_patch_sample.h5", "r") as f:
+    imgs = f["img"]  # assumes the dataset is named 'img'
+    print(f"Total images: {len(imgs)}")
+    image_tensor  = imgs[1000]
+    image_tensor = torch.tensor(image_tensor).permute(2, 0, 1).unsqueeze(0).float()
+    # Show original
+    show_image(image_tensor[0], title="Original 32x32 Image")
+
+    # Interpolate to 224x224
+    interpolated = F.interpolate(image_tensor, size=(224, 224), mode='bilinear', align_corners=False)[0]
+
+    # Show resized
+    show_image(interpolated, title="Interpolated 224x224 Image")
+
+
+
+
+
+
+
+# Generate a sample image: [1, 3, 32, 32]
+image_tensor = torch.randn(1, 3, 32, 32)
+
+# Show original
+show_image(image_tensor[0], title="Original 32x32 Image")
+
+# Interpolate to 224x224
+interpolated = F.interpolate(image_tensor, size=(224, 224), mode='bilinear', align_corners=False)[0]
+
+# Show resizedTotal images: 167780
+# Traceback (most recent call last):
+#   File "<input>", line 24, in <module>
+#   File "<input>", line 11, in show_image
+# AttributeError: 'numpy.ndarray' object has no attribute 'permute'
+show_image(interpolated, title="Interpolated 224x224 Image")
+
+plt.show()
+a = torch.load("processed_data/breast_g1/raw_expression_small.pth")
+a = torch.load("processed_data/breast_g1/raw_expression_big.pth")

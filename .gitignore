@@ -1,6 +1,6 @@
 data/breast_g1/cell_patch_sample.h5
 data/breast_g1/HE.tif
-processed_data/breast_g1/gene_encode.pth
+processed_data/breast_g1/gene_encode_small.pth
 processed_data/breast_g1/coord_encode_big.pth
 processed_data/breast_g1/gene_encode_big.pth
 processed_data/breast_g1/ground_truth_big.pth

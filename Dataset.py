@@ -9,8 +9,8 @@ importlib.reload(encode.FeatureExtract)
 from encode.FeatureExtract import GeneformerExtractor
 class STDataset(Dataset):
     def __init__(self, data_dir = "processed_data", samples = ["breast_g1"], sample_prop = 0.1,
-                 ge_files = "gene_encode.pth", cell_images = "/HE.tif",
-                 coords = "coord_encode.pth",
+                 ge_files = "gene_encode_small.pth", cell_images = "/HE.tif",
+                 coords = "coord_encode_small.pth",
                  seed = 42, transform=None):
         self.sample_prop = sample_prop
         self.len = len(samples)
@@ -109,7 +109,7 @@ class CellRawExpDataset(Dataset):
 
 class CellGeneformerDataset(Dataset):
     def __init__(self, data_dir="processed_data", samples="breast_g1",
-                 ge_files="gene_encode.pth", ground_truth = "ground_truth.pth"):
+                 ge_files="gene_encode_small.pth", ground_truth = "ground_truth_small.pth"):
         self.gene = torch.load(os.path.join(data_dir, samples, ge_files))
         self.true = torch.load(os.path.join(data_dir, samples, ground_truth))
         self.len = self.gene.shape[0]

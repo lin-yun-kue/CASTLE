@@ -71,21 +71,25 @@ config = {
 
 ## data
 data_dir = os.path.join("processed_data", "breast_g1")
-gene_data = torch.load(os.path.join(data_dir, 'gene_encode_big.pth')).to(device)
-spatial_data = torch.load(os.path.join(data_dir, 'coord_encode_big.pth')).to(device)
-img_data = torch.load(os.path.join(data_dir, 'img_encode_big.pth')).to(device)
-gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression_big.pth')).to(device)
-ground_truth = torch.load(os.path.join(data_dir, 'ground_truth_big.pth')).to(device)
+gene_data = torch.load(os.path.join(data_dir, 'gene_encode_small.pth')).to(device)
+spatial_data = torch.load(os.path.join(data_dir, 'coord_encode_small.pth')).to(device)
+img_data = torch.load(os.path.join(data_dir, 'img_encode_small.pth')).to(device)
+gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression_small.pth')).to(device)
+ground_truth = torch.load(os.path.join(data_dir, 'ground_truth_small.pth')).to(device)
 cat_data = torch.cat((gene_data, spatial_data, img_data), dim=1).to(device)  # [N, 1024]
 
 
 def main():
+    _, pred = get_centre_pred(gene_raw_data, reduce_dim="umap", clustering="kmeans", n_components=32)
+    print("raw gene expression: ")
+    visualize_2d(gene_raw_data, pred, logger = None, descrip="")
+    # eval_accuracy(pred, ground_truth)
     # test accuracy of various input
     # print("Ground truth: ")
     # eval_accuracy(ground_truth, ground_truth)
-    _, pred = get_centre_pred(gene_raw_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
-    print("raw gene expression: ")
-    eval_accuracy(pred, ground_truth)
+    # _, pred = get_centre_pred(gene_raw_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
+    # print("raw gene expression: ")
+    # eval_accuracy(pred, ground_truth)
     # visualize_2d(gene_raw_data, ground_truth, logger=None, descrip="DEC")
     # _, pred = get_centre_pred(cat_data, reduce_dim=config['reduce_dim'], clustering=config['clusteralg'], n_components=50)
     # print("concatenated expression: ")
@@ -101,86 +105,86 @@ def main():
     # print("coord encoded: ")
     # eval_accuracy(pred, ground_truth)
 
-
-
-    run_name = generateRunName()
-    if cuda:
-        wandb.login()
-    else:
-        wandb.login(key="bee43af8ef4c8ec45c3bdfc2ce404e435d5f23cf")
-    wandb.init(project="[AI539] Final Project", name=run_name, config=config)
-    logger = wandb
-    train_dataset = CellRawExpDataset()
-    autoencoder = StackedDenoisingAutoEncoder(
-        config["dims"], final_activation = None
-    )
-    autoencoder.to(device)
-    print(autoencoder)
-    print("model is launched on device:", device)
-    print("pretraining stage-----")
-    ae.pretrain(
-        train_dataset,
-        autoencoder,
-        cuda = cuda,
-        validation = None,
-        epochs = config['pretrain_epoch'],
-        batch_size = config['batch_size'],
-        optimizer=lambda model: SGD(model.parameters(), lr=config['pretrain_lr'], momentum=config['pretrain_momentum']),
-        scheduler=lambda x: StepLR(x, config['pretrain_step_size'], gamma=config['pretrain_gamma']),
-        corruption=config['corrupt'],
-        silent = False,
-        num_workers= config['num_workers'],
-        logger = logger,
-    )
-    print("training stage-----")
-    ae_optimizer = SGD(params=autoencoder.parameters(), lr=config['train_lr'], momentum=config['train_momentum'])
-    progress = tqdm(total=config['finetune_epoch'], desc="Training Progress")
-    ae.train(
-        train_dataset,
-        autoencoder,
-        cuda=cuda,
-        validation=None,
-        epochs= config['finetune_epoch'],
-        batch_size=config['batch_size'],
-        optimizer=ae_optimizer,
-        scheduler=StepLR(ae_optimizer, config['train_step_size'], gamma=config['train_gamma']),
-        corruption=config["corrupt"],
-        num_workers=config['num_workers'],
-        logger = logger,
-        logger_desc = "train",
-        progress_bar = progress,
-    )
-    progress.close()
-
-    with torch.no_grad():
-        z = autoencoder.encoder(gene_raw_data.to(torch.float32))
-
-    # print(z)
-    visualize_2d(z, ground_truth, logger=logger, descrip="SDAE")
-    _, pred = get_centre_pred(z, clustering=config['clusteralg'])
-    eval_accuracy(pred, ground_truth)
-
-    print("DEC stage-----")
-    model = DEC(cluster_number=config['n_cluster'], hidden_dimension=config["dims"][-1], encoder = autoencoder.encoder)
-    model.to(device)
-    dec_optimizer = SGD(params=model.parameters(), lr=config['dec_lr'], momentum=0.9)
-    train(
-        dataset= train_dataset,
-        model=model,
-        epochs=config['dec_epoch'],
-        batch_size=config['batch_size'],
-        optimizer=dec_optimizer,
-        scheduler=StepLR(dec_optimizer, config['dec_step_size'], gamma=config['dec_gamma']),
-        stopping_delta=config["stopping_delta"],
-        cuda=cuda,
-        logger = logger,
-        num_workers=config['num_workers'],
-    )
-    pred, true = predict(train_dataset, model, config["batch_size"], silent = True, return_actual=True, cuda = cuda)
-    with torch.no_grad():
-        z = model.encoder(gene_raw_data.to(torch.float32))
-    visualize_2d(z, ground_truth, logger=logger, descrip="DEC")
-    eval_accuracy(pred, true)
+    #
+    #
+    # run_name = generateRunName()
+    # if cuda:
+    #     wandb.login()
+    # else:
+    #     wandb.login(key="bee43af8ef4c8ec45c3bdfc2ce404e435d5f23cf")
+    # wandb.init(project="[AI539] Final Project", name=run_name, config=config)
+    # logger = wandb
+    # train_dataset = CellRawExpDataset()
+    # autoencoder = StackedDenoisingAutoEncoder(
+    #     config["dims"], final_activation = None
+    # )
+    # autoencoder.to(device)
+    # print(autoencoder)
+    # print("model is launched on device:", device)
+    # print("pretraining stage-----")
+    # ae.pretrain(
+    #     train_dataset,
+    #     autoencoder,
+    #     cuda = cuda,
+    #     validation = None,
+    #     epochs = config['pretrain_epoch'],
+    #     batch_size = config['batch_size'],
+    #     optimizer=lambda model: SGD(model.parameters(), lr=config['pretrain_lr'], momentum=config['pretrain_momentum']),
+    #     scheduler=lambda x: StepLR(x, config['pretrain_step_size'], gamma=config['pretrain_gamma']),
+    #     corruption=config['corrupt'],
+    #     silent = False,
+    #     num_workers= config['num_workers'],
+    #     logger = logger,
+    # )
+    # print("training stage-----")
+    # ae_optimizer = SGD(params=autoencoder.parameters(), lr=config['train_lr'], momentum=config['train_momentum'])
+    # progress = tqdm(total=config['finetune_epoch'], desc="Training Progress")
+    # ae.train(
+    #     train_dataset,
+    #     autoencoder,
+    #     cuda=cuda,
+    #     validation=None,
+    #     epochs= config['finetune_epoch'],
+    #     batch_size=config['batch_size'],
+    #     optimizer=ae_optimizer,
+    #     scheduler=StepLR(ae_optimizer, config['train_step_size'], gamma=config['train_gamma']),
+    #     corruption=config["corrupt"],
+    #     num_workers=config['num_workers'],
+    #     logger = logger,
+    #     logger_desc = "train",
+    #     progress_bar = progress,
+    # )
+    # progress.close()
+    #
+    # with torch.no_grad():
+    #     z = autoencoder.encoder(gene_raw_data.to(torch.float32))
+    #
+    # # print(z)
+    # visualize_2d(z, ground_truth, logger=logger, descrip="SDAE")
+    # _, pred = get_centre_pred(z, clustering=config['clusteralg'])
+    # eval_accuracy(pred, ground_truth)
+    #
+    # print("DEC stage-----")
+    # model = DEC(cluster_number=config['n_cluster'], hidden_dimension=config["dims"][-1], encoder = autoencoder.encoder)
+    # model.to(device)
+    # dec_optimizer = SGD(params=model.parameters(), lr=config['dec_lr'], momentum=0.9)
+    # train(
+    #     dataset= train_dataset,
+    #     model=model,
+    #     epochs=config['dec_epoch'],
+    #     batch_size=config['batch_size'],
+    #     optimizer=dec_optimizer,
+    #     scheduler=StepLR(dec_optimizer, config['dec_step_size'], gamma=config['dec_gamma']),
+    #     stopping_delta=config["stopping_delta"],
+    #     cuda=cuda,
+    #     logger = logger,
+    #     num_workers=config['num_workers'],
+    # )
+    # pred, true = predict(train_dataset, model, config["batch_size"], silent = True, return_actual=True, cuda = cuda)
+    # with torch.no_grad():
+    #     z = model.encoder(gene_raw_data.to(torch.float32))
+    # visualize_2d(z, ground_truth, logger=logger, descrip="DEC")
+    # eval_accuracy(pred, true)
 
 
     # train self written version of autoencoder
