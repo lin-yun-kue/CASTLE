@@ -29,7 +29,7 @@ cuda = torch.cuda.is_available()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 config = {
-    "n_component": [8, 16, 32, 64, 128],
+    "n_component": [32],
     "clustering": ["kmeans", "louvain"],
     "dim_reduction": ["pca", "umap"],
     "n_cluster": 19
@@ -55,11 +55,17 @@ warnings.filterwarnings(
 data_dir = os.path.join("processed_data", "breast_g1")
 gene_data = torch.load(os.path.join(data_dir, 'gene_encode_small.pth')).to(device)
 spatial_data = torch.load(os.path.join(data_dir, 'coord_encode_small.pth')).to(device)
+period_spatial_data = torch.load(os.path.join(data_dir, 'coord_period_encode.pth')).to(device)
 img_data = torch.load(os.path.join(data_dir, 'img_encode_small.pth')).to(device)
 # spatial_data_2 = torch.load(os.path.join(data_dir, 'coord_encode_2.pth')).to(device)
 # img_data_2 = torch.load(os.path.join(data_dir, 'img_encode_2.pth')).to(device)
 gene_raw_data = torch.load(os.path.join(data_dir, 'raw_expression_small.pth')).to(device)
 ground_truth = torch.load(os.path.join(data_dir, 'ground_truth_small.pth')).to(device)
+
+AB = torch.cat((gene_raw_data, period_spatial_data), dim=1)
+AC = torch.cat((gene_raw_data, img_data), dim=1)
+ABC = torch.cat((gene_raw_data, period_spatial_data, img_data), dim=1)
+
 
 
 def main():
@@ -69,7 +75,9 @@ def main():
         for c in config["clustering"]:
             for d in config["dim_reduction"]:
                 counter = 1
-                for data in [gene_raw_data, gene_data, spatial_data, img_data]:
+                # datas = [gene_raw_data, gene_data, spatial_data, period_spatial_data, img_data]
+                datas = [AB, AC, ABC]
+                for data in datas:
                     _, pred, features = get_centre_pred(data, reduce_dim=d, clustering=c, n_components=n)
                     acc, score, entropy = eval_accuracy(pred, ground_truth, features)
                     results_df.loc[len(results_df.index)] = [n, c, d, counter,acc, score, entropy]
